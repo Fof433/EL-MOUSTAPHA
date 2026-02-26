@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio de Fofana El Moustapha - Spécialiste Réseau, Sécurité & Web.">
+    <title>Fofana El Moustapha | Spécialiste Digital & Sécurité</title>
+    <meta name="keywords" content="Fofana El Moustapha, Spécialiste Réseau, Sécurité, Web, Digital, Sécurité des données, Cybersécurité, Infrastructures numériques, Gestion de projet, Développement web, Intelligence Artificielle">
+    <meta name="author" content="FOFANA EL MOUSTAPHA">
+    <link rel="shortcut icon" href="images/logo.jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="light-mode">
+
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">
+                <img src="images/logo.jpeg" alt="Logo Fofana El Moustapha" class="nav-logo-img">
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#accueil" class="active-link">Accueil</a></li>
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#apropos">A Propos</a></li>
+                <li><a href="#outils">Outils</a></li>
+                <li><a href="#interets">Intérêts</a></li>
+                <li><a href="#contact" class="btn-nav">Me Contacter</a></li>
+                <li class="theme-switch-wrapper">
+                    <i class="fas fa-moon" id="theme-toggle" aria-label="Changer de thème"></i>
+                </li>
+            </ul>
+
+            <div class="burger" aria-label="Menu mobile">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </nav>
+
+    <header id="accueil" class="hero-section">
+        <canvas id="molecules-canvas"></canvas>
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        
+        <!-- Bulles décoratives -->
+        <div class="bubble bubble-1"></div>
+        <div class="bubble bubble-2"></div>
+        <div class="bubble bubble-3"></div>
+        <div class="bubble bubble-4"></div>
+        <div class="bubble bubble-5"></div>
+
+        <div class="container hero-content fade-in">
+            <div class="hero-badge">
+                <i class="fas fa-check-circle"></i> Profil Vérifié 2026
+            </div>
+            <h1>FOFANA EL MOUSTAPHA</h1>
+            <h2 class="typing-text">Je suis <span class="txt-type" data-wait="3000"
+                    data-words='["Spécialiste Sécurité", "Développeur Web", "Spécialiste Réseau","Designer graphique"]'></span></h2>
+
+            <p>Transformez vos défis technologiques en solutions pérennes. <br>Basé à Abidjan, Yopougon.</p>
+
+            <div class="hero-btns">
+                <a href="#contact" class="btn-primary"><i class="fas fa-paper-plane"></i> Démarrer un projet</a>
+                <a href="#expertise" class="btn-secondary"><i class="fas fa-arrow-down"></i> En savoir plus</a>
+                <a href="#" class="btn-download-cv"><i class="fas fa-download"></i> Télécharger mon CV</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="apropos" class="section-padding">
+        <div class="container">
+            <h3 class="about-title">A PROPOS DE MOI</h3>
+            <div class="about-flex-container">
+                <div class="about-column-left">
+                    <div class="about-image-wrapper">
+                        <img src="images/PHOTO.png" alt="Portrait de Fofana El Moustapha" class="about-portrait">
+                    </div>
+                </div>
+                <div class="about-column-right">
+                    <p>En tant que spécialiste en réseaux, cybersécurité et développement web, je propose des solutions technologiques robustes et innovantes pour les entreprises.</p>
+                    <p>Spécialiste en création d'agents IA (Intelligence Artificielle) et design graphique, je met en œuvre une analyse systématique et une conception stratégique pour optimiser les performances des entreprises.</p>
+                    <p>Mon approche professionnelle intègre une rigueur technique soutenue par une créativité stratégique pour transformer les infrastructures numériques en véritables leviers de croissance et de compétitivité.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="expertise" class="section-padding">
+        <div class="container">
+            <h3 class="section-title">
+                <span class="title-bar orange"></span> DOMAINES D'EXPERTISE
+            </h3>
+
+            <div class="grid-3">
+                <div class="service-card">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Sécurité & Réseaux</h4>
+                    <p>Audit de vulnérabilité, protection pare-feu et administration système haute sécurité.</p>
+                </div>
+                <div class="service-card delay-100">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h4>Développement Web</h4>
+                    <p>Sites vitrines, e-commerce et applications web sur-mesure (HTML5, CSS3, JS).</p>
+                </div>
+                <div class="service-card delay-200">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h4>Intelligence Artificielle</h4>
+                    <p>Intégration d'agents IA et automatisation intelligente des processus métier.</p>
+                </div>
+                <div class="service-card delay-300">
+                    <div class="icon-wrapper">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="maintenance-icon">
+                            <!-- Tournevis -->
+                            <g transform="translate(20, 15) rotate(-45)">
+                                <rect x="2" y="0" width="6" height="50" fill="currentColor" rx="3"/>
+                                <circle cx="5" cy="55" r="6" fill="currentColor"/>
+                            </g>
+                            <!-- Clé -->
+                            <g transform="translate(55, 30) rotate(25)">
+                                <rect x="0" y="8" width="35" height="6" fill="currentColor" rx="3"/>
+                                <circle cx="35" cy="11" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+                            </g>
+                            <!-- Engrenage -->
+                            <g transform="translate(75, 65)">
+                                <circle cx="0" cy="0" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="0" cy="0" r="4" fill="currentColor"/>
+                                <rect x="-1.5" y="-12" width="3" height="4" fill="currentColor"/>
+                                <rect x="-1.5" y="8" width="3" height="4" fill="currentColor"/>
+                                <rect x="-12" y="-1.5" width="4" height="3" fill="currentColor"/>
+                                <rect x="8" y="-1.5" width="4" height="3" fill="currentColor"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <h4>Maintenance informatique</h4>
+                    <p>Diagnostic et résolution de pannes, optimisation système et entretien préventif : Logiciel (installation, mises à jour, sécurité). Matériel (réparation, nettoyage, remplacement de composants).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="outils" class="section-padding bg-alt">
+        <div class="container">
+            <h3 class="section-title">
+                <span class="title-bar orange"></span> OUTILS & MAÎTRISE
+            </h3>
+
+            <div class="grid-3">
+                <div class="info-box">
+                    <div class="box-header">
+                        <i class="fas fa-palette accent-orange"></i>
+                        <h4>Design & Création</h4>
+                    </div>
+                    <ul class="clean-list">
+                        <li><i class="fas fa-check-circle dot-ice"></i> <span>Design Graphique & Logos</span></li>
+                        <li><i class="fas fa-check-circle dot-ice"></i> <span>UI/UX Design Web</span></li>
+                        <li><i class="fas fa-check-circle dot-ice"></i> <span>Supports Marketing</span></li>
+                    </ul>
+                </div>
+
+                <div class="info-box delay-100">
+                    <div class="box-header">
+                        <i class="fab fa-microsoft accent-orange"></i>
+                        <h4>Microsoft Office</h4>
+                    </div>
+                    <ul class="clean-list">
+                        <li><i class="fas fa-check-circle dot-ice"></i> <span>Excel (VBA, TCD, Data)</span></li>
+                        <li><i class="fas fa-check-circle dot-ice"></i> <span>PowerPoint (Storytelling)</span></li>
+                        <li><i class="fas fa-check-circle dot-ice"></i> <span>Word (Mise en page Pro)</span></li>
+                    </ul>
+                </div>
+
+                <div class="info-box delay-200">
+                    <div class="box-header">
+                        <i class="fas fa-video accent-orange"></i>
+                        <h4>Montage Vidéo</h4>
+                    </div>
+                    <ul class="clean-list">
+                        <li><i class="fas fa-check-circle dot-ice"></i> <span>Adobe Premiere Pro</span></li>
+                        <li><i class="fas fa-check-circle dot-ice"></i> <span>Étalonnage colorimétrique professionnel (Color Grading)</span></li>
+                        <li><i class="fas fa-check-circle dot-ice"></i> <span>Montage pour réseaux sociaux et le web</span></li>
+                    </ul>
+                </div>
+                <div class="info-box delay-300">
+                    <div class="box-header">
+                        <i class="fab fa-git-alt accent-orange"></i>
+                        <h4>Développement & Versioning</h4>
+                    </div>
+                    <ul class="clean-list">
+                        <li><i class="fas fa-check-circle dot-ice"></i> <span>Git (Gestion des versions)</span></li>
+                        <li><i class="fas fa-check-circle dot-ice"></i> <span>GitHub (Collaboration & Hébergement)</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="interets" class="section-padding">
+        <div class="container">
+            <h3 class="section-title">
+                <span class="title-bar orange"></span> PASSIONS & INTÉRÊTS
+            </h3>
+
+            <div class="grid-3">
+                <div class="interest-card">
+                    <div class="interest-bg" style="background: linear-gradient(45deg, #000000, #434343);"></div>
+                    <div class="interest-content">
+                        <i class="fas fa-user-secret interest-icon"></i>
+                        <h4>Hacking Éthique</h4>
+                        <p>Passion pour la cybersécurité offensive (Red Teaming) et les challenges CTF.</p>
+                    </div>
+                </div>
+
+                <div class="interest-card delay-100">
+                    <div class="interest-bg" style="background: linear-gradient(45deg, #ff6b6b, #556270);"></div>
+                    <div class="interest-content">
+                        <i class="fas fa-film interest-icon"></i>
+                        <h4>Animation</h4>
+                        <p>Exploration du Motion Design et de l'animation numérique pour interfaces.</p>
+                    </div>
+                </div>
+
+                <div class="interest-card delay-200">
+                    <div class="interest-bg" style="background: linear-gradient(45deg, #11998e, #38ef7d);"></div>
+                    <div class="interest-content">
+                        <i class="fas fa-cube interest-icon"></i>
+                        <h4>Design 3D</h4>
+                        <p>Modélisation et rendu d'objets 3D pour des expériences visuelles immersives.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding bg-alt">
+        <div class="container contact-wrapper">
+            <h3 class="section-title center">
+                <span class="title-bar orange"></span> CONTACT & RÉSEAUX
+            </h3>
+            <p class="contact-subtitle">Un projet ? Une question ? Discutons-en.</p>
+
+            <div class="social-icons">
+                <a href="https://wa.me/2250584442211" target="_blank" class="social-icon whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+
+                <a href="mailto:elmoustaphafofana51@gmail.com" class="social-icon email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+
+                <a href="https://www.facebook.com/profile.php?id=919687087904950" target="_blank"
+                    class="social-icon facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+
+                <a href="https://www.linkedin.com/in/el-moustapha-fofana-4217b939b" target="_blank" class="social-icon linkedin">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 El Moustapha Fofana - Propri&eacute;t&eacute; intellectuelle prot&eacute;g&eacute;e.</p>
+            <p class="location"><i class="fas fa-map-marker-alt"></i> Abidjan, Côte d'Ivoire</p>
+        </div>
+    </footer>
+
+    <a href="#" class="to-top" aria-label="Retour en haut">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
