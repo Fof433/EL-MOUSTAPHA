@@ -508,9 +508,50 @@ ul {
     grid-auto-rows: 1fr;
 }
 
+/* === GRILLE DÉDIÉE OUTILS & MAÎTRISE === */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    padding: 0;
+}
+
+@media (min-width: 768px) {
+    .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .tools-grid .info-box {
+        min-height: 300px;
+    }
+}
+
+@media (max-width: 767px) {
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tools-grid .info-box {
+        min-height: auto;
+    }
+}
+
 /* === CARTES UNIVERSELLES (Service + Info + Interest) === */
 .service-card,
-.info-box,
+.info-box {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: 16px;
+    border: none;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    position: relative;
+}
+
 .interest-card {
     box-sizing: border-box;
     display: flex;
@@ -526,16 +567,26 @@ ul {
 }
 
 /* === CARTES SERVICE & INFO BOX === */
-.service-card,
+.service-card {
+    padding: 1.5rem;
+}
+
 .info-box {
     padding: 1.5rem;
 }
 
-.service-card:hover,
-.info-box:hover {
+.service-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03), 0 20px 35px -8px rgba(0, 86, 179, 0.25);
-    border-color: var(--blue-primary);
+}
+
+.info-box {
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+}
+
+.info-box:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04), 0 20px 35px -8px rgba(0, 86, 179, 0.25);
 }
 
 /* === CONTENU INTÉRIEUR === */
@@ -601,7 +652,8 @@ ul {
     display: flex;
     align-items: flex-start;
     gap: 1rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0;
 }
 
 .box-header h4 {
@@ -1162,6 +1214,14 @@ footer .location:hover i {
 
     .service-card p {
         font-size: 0.9rem;
+    }
+    
+    .box-header {
+        margin-bottom: 0.875rem;
+    }
+
+    .clean-list {
+        gap: 0.75rem;
     }
 
     .clean-list li {
