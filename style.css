@@ -4,19 +4,23 @@
     font-weight: 600;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     background: var(--blue-primary);
-    color: #fff;
+    color: #fff !important;
     box-shadow: 0 4px 15px rgba(0, 86, 179, 0.2);
-    transition: background 0.3s, color 0.3s;
+    transition: all 0.3s ease;
     border: none;
+    cursor: pointer;
 }
+
 .btn-download-cv:hover {
     background: var(--blue-dark);
-    color: #fff;
+    color: #fff !important;
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(0, 86, 179, 0.3);
 }
+
 /* --- 1. CONFIGURATION & VARIABLES --- */
 :root {
     /* Couleurs Principales (Charte) */
@@ -217,13 +221,16 @@ ul {
         transform: translateY(20px);
         opacity: 0;
     }
+
     60% {
         transform: translateY(-10px);
         opacity: 1;
     }
+
     80% {
         transform: translateY(5px);
     }
+
     100% {
         transform: translateY(0);
         opacity: 1;
@@ -282,18 +289,23 @@ ul {
 }
 
 @keyframes floatBubble {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0) scale(1);
         opacity: 0.3;
     }
+
     25% {
         transform: translateY(-20px) scale(1.05);
         opacity: 0.5;
     }
+
     50% {
         transform: translateY(10px) scale(0.95);
         opacity: 0.4;
     }
+
     75% {
         transform: translateY(-15px) scale(1.02);
         opacity: 0.6;
@@ -397,7 +409,17 @@ ul {
     margin-bottom: 15px;
     color: var(--text-main);
     font-weight: 800;
-    animation: reveal-bounce 0.8s ease-out;
+    animation: reveal-bounce 0.8s ease-out, h1Float 3s ease-in-out infinite alternate;
+}
+
+@keyframes h1Float {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-8px);
+    }
 }
 
 .typing-text {
@@ -520,7 +542,7 @@ ul {
     .tools-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .tools-grid .info-box {
         min-height: 300px;
     }
@@ -530,7 +552,7 @@ ul {
     .tools-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .tools-grid .info-box {
         min-height: auto;
     }
@@ -590,13 +612,13 @@ ul {
 }
 
 /* === CONTENU INTÉRIEUR === */
-.service-card > *:first-child,
-.info-box > *:first-child {
+.service-card>*:first-child,
+.info-box>*:first-child {
     margin-top: 0;
 }
 
-.service-card > *:last-child,
-.info-box > *:last-child {
+.service-card>*:last-child,
+.info-box>*:last-child {
     margin-bottom: 0;
 }
 
@@ -875,6 +897,8 @@ ul {
     gap: 30px;
     margin-top: 40px;
     flex-wrap: wrap;
+    position: relative;
+    z-index: 5;
 }
 
 .social-icon {
@@ -900,6 +924,13 @@ ul {
 .social-icon:hover {
     transform: translateY(-5px) scale(1.1);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.social-icon:active {
+    transform: translateY(-5px) scale(1.05);
+    /* Reste soulevé mais se réduit légèrement pour l'effet clic */
+    transition: transform 0.1s ease;
+    /* Transition plus rapide pour le clic */
 }
 
 .social-icon.whatsapp:hover {
@@ -1048,17 +1079,18 @@ footer .location:hover i {
 
 /* Responsive */
 @media (max-width: 768px) {
+
     /* Padding latéral pour tous les conteneurs */
     .container {
         padding: 0 20px;
         max-width: 100%;
     }
-    
+
     /* Line-height amélioré pour les paragraphes */
     p {
         line-height: 1.6 !important;
     }
-    
+
     /* Largeur maximale des blocs de texte */
     .service-card,
     .info-box,
@@ -1067,23 +1099,23 @@ footer .location:hover i {
         max-width: 100%;
         margin: 0 auto;
     }
-    
+
     /* Espacement vertical pour les cartes de compétences */
     .clean-list li {
         margin-bottom: 10px;
         padding: 4px 0;
     }
-    
+
     .clean-list li:last-child {
         margin-bottom: 0;
     }
-    
+
     .dot-ice {
         margin-right: 15px;
         font-size: 1.1rem;
         flex-shrink: 0;
     }
-    
+
     /* Navigation mobile */
     .nav-links {
         position: absolute;
@@ -1121,23 +1153,24 @@ footer .location:hover i {
     }
 
     /* Suppression du scroll horizontal */
-    html, body {
+    html,
+    body {
         overflow-x: hidden !important;
         width: 100% !important;
         max-width: 100vw !important;
     }
-    
+
     /* Section padding ajusté pour mobile */
     .section-padding {
         padding: 60px 0;
     }
-    
+
     /* Hero section optimisée */
     .hero-content {
         text-align: center;
         padding: 0 20px;
     }
-    
+
     .hero-content h1 {
         font-size: 2.5rem;
         line-height: 1.2;
@@ -1150,7 +1183,8 @@ footer .location:hover i {
     }
 
     .btn-primary,
-    .btn-secondary {
+    .btn-secondary,
+    .btn-download-cv {
         width: 90%;
         justify-content: center;
         margin: 0 auto;
@@ -1170,21 +1204,21 @@ footer .location:hover i {
         padding: 0 20px;
         margin-left: 0;
     }
-    
+
     /* Section A PROPOS spécifique pour mobile */
     .about-image {
         width: 100%;
         justify-content: center;
         padding: 0;
     }
-    
+
     .about-text {
         max-width: 100%;
         padding: 0;
         text-align: left;
         margin-left: 0;
     }
-    
+
     .photo-placeholder {
         width: 250px;
         height: 250px;
@@ -1215,7 +1249,7 @@ footer .location:hover i {
     .service-card p {
         font-size: 0.9rem;
     }
-    
+
     .box-header {
         margin-bottom: 0.875rem;
     }
