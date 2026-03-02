@@ -408,25 +408,36 @@ ul {
     align-items: center;
     gap: 8px;
     margin-bottom: 25px;
-    border: 1px solid rgba(255, 107, 0, 0.3);
-    animation: badgeGlowBreath 4s infinite alternate ease-in-out;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    border: 1px solid rgba(255, 107, 0, 0.2);
+    animation: badgeGlowBreath 4s infinite ease-in-out;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.hero-badge i {
+    transition: transform 0.3s ease;
 }
 
 @keyframes badgeGlowBreath {
-    0% {
-        box-shadow: 0 0 4px rgba(255, 107, 0, 0.05);
-    }
+
+    0%,
     100% {
-        box-shadow: 0 0 12px rgba(255, 107, 0, 0.3);
+        box-shadow: 0 0 8px rgba(255, 107, 0, 0.1);
+        border-color: rgba(255, 107, 0, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 16px rgba(255, 107, 0, 0.25);
+        border-color: rgba(255, 107, 0, 0.4);
     }
 }
 
 .hero-badge:hover {
+    box-shadow: 0 0 12px rgba(255, 107, 0, 0.35);
+    border-color: rgba(255, 107, 0, 0.5);
+}
+
+.hero-badge:hover i {
     transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
-    border-color: rgba(255, 107, 0, 0.6);
-    animation-play-state: paused;
 }
 
 .hero-content h1 {

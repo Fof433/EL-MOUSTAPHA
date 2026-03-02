@@ -1,8 +1,9 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     // --- Bouton Télécharger mon CV ---
     const btnDownloadCV = document.querySelector('.btn-download-cv');
     if (btnDownloadCV) {
-        btnDownloadCV.addEventListener('click', function(e) {
+        btnDownloadCV.addEventListener('click', function (e) {
             e.preventDefault();
             // Remplacez 'cv.pdf' par le nom réel du fichier CV
             window.open('cv.pdf', '_blank');
