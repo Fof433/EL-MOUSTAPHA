@@ -1,48 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- DÉTECTION NAVIGATEUR FACEBOOK ---
-    const isFBBrowser = /FBAN|FBAV|FB_IAB|Instagram/i.test(navigator.userAgent);
-
-    if (isFBBrowser) {
-        // Affiche une bannière d'avertissement en haut de page
-        const banner = document.createElement('div');
-        banner.id = 'fb-browser-banner';
-        banner.innerHTML = `
-            <i class="fas fa-exclamation-triangle"></i>
-            Vous utilisez le navigateur Facebook. Pour une meilleure expérience et des liens corrects,
-            <strong>ouvrez ce site dans votre navigateur</strong> (⋮ &rarr; "Ouvrir dans Chrome/Safari").
-            <button onclick="this.parentElement.remove()" aria-label="Fermer">&times;</button>
-        `;
-        document.body.prepend(banner);
-
-        // Intercepte les clics sur les icônes sociales depuis FB browser
-        document.querySelectorAll('.social-icon').forEach(link => {
-            link.addEventListener('click', function (e) {
-                const url = this.href;
-                if (url && !url.startsWith('mailto')) {
-                    e.preventDefault();
-                    // Affiche un toast avec le lien à copier
-                    showFBToast(url);
-                }
-            });
-        });
-    }
-
-    function showFBToast(url) {
-        const existing = document.getElementById('fb-toast');
-        if (existing) existing.remove();
-
-        const toast = document.createElement('div');
-        toast.id = 'fb-toast';
-        toast.innerHTML = `
-            <p><strong>Copiez ce lien et ouvrez-le dans Chrome ou Safari :</strong></p>
-            <input type="text" value="${url}" readonly onclick="this.select()">
-            <button onclick="navigator.clipboard.writeText('${url}').then(()=>{this.textContent='✅ Copié!'})">Copier</button>
-            <button onclick="this.closest('#fb-toast').remove()" style="background:#475569">Fermer</button>
-        `;
-        document.body.appendChild(toast);
-        setTimeout(() => { if (toast.parentElement) toast.remove(); }, 12000);
-    }
-
     // --- FORMULAIRE DE CONTACT (mailto) ---
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
