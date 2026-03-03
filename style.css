@@ -1014,31 +1014,51 @@ body.dark-mode .contact-form:hover {
     padding: 16px 20px;
     border-radius: 12px;
     border: 1px solid #e2e8f0;
-    background: #ffffff;
+    background: #f8fafc;
     color: var(--text-main);
     font-size: 1rem;
     font-family: 'Poppins', sans-serif;
-    transition: all 0.3s ease;
-    box-shadow: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.form-group input:hover,
+.form-group textarea:hover {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.03);
 }
 
 body.dark-mode .form-group input,
 body.dark-mode .form-group textarea {
-    background: #111827;
+    background: #1f2937;
     border: 1px solid #374151;
     color: #f3f4f6;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .form-group input:hover,
+body.dark-mode .form-group textarea:hover {
+    background: #111827;
+    border-color: #4b5563;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
     border-color: #f1c40f;
-    box-shadow: 0 0 0 4px rgba(241, 196, 15, 0.15);
+    background: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(241, 196, 15, 0.15), inset 0 0 0 1px #f1c40f;
 }
 
 body.dark-mode .form-group input:focus,
 body.dark-mode .form-group textarea:focus {
-    box-shadow: 0 0 0 4px rgba(241, 196, 15, 0.2);
+    background: #111827;
+    box-shadow: 0 10px 25px rgba(241, 196, 15, 0.25), inset 0 0 0 1px #f1c40f;
 }
 
 .form-actions {
@@ -1098,6 +1118,60 @@ body.dark-mode .btn-cancel:hover {
 
 .btn-submit:active {
     transform: translateY(0);
+}
+
+.btn-submit:disabled {
+    background: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* --- Feedback formulaire --- */
+.form-feedback {
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: center;
+    animation: fadeInUp 0.4s ease;
+}
+
+.form-feedback.success {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.form-feedback.error {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+body.dark-mode .form-feedback.success {
+    background: #14532d;
+    color: #86efac;
+    border-color: #16a34a;
+}
+
+body.dark-mode .form-feedback.error {
+    background: #7f1d1d;
+    color: #fca5a5;
+    border-color: #dc2626;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .social-icons {
@@ -1168,6 +1242,99 @@ footer {
     position: relative;
     overflow: hidden;
     border-top: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+/* --- Bannière navigateur Facebook --- */
+#fb-browser-banner {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: #f39c12;
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+#fb-browser-banner i {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+#fb-browser-banner button {
+    background: rgba(255, 255, 255, 0.25);
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Toast copie de lien (FB Browser) --- */
+#fb-toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    background: #1e293b;
+    color: #f8fafc;
+    padding: 20px 24px;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    width: 90%;
+    max-width: 420px;
+    text-align: center;
+    animation: fadeInUp 0.3s ease;
+}
+
+#fb-toast p {
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    color: #f8fafc;
+}
+
+#fb-toast input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #334155;
+    background: #0f172a;
+    color: #f1c40f;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+#fb-toast button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    background: #f1c40f;
+    color: #000;
+    font-weight: 700;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: 0.2s ease;
+    font-size: 0.9rem;
+}
+
+#fb-toast button:hover {
+    opacity: 0.85;
 }
 
 /* Effet de lueur subtile en arrière-plan */

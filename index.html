@@ -336,25 +336,28 @@
             </h3>
             <p class="contact-subtitle">Un projet ? Une question ? Discutons-en.</p>
 
-            <form class="contact-form" action="https://formsubmit.co/elmoustaphafofana51@gmail.com" method="POST">
-                <!-- IMPORTANT : Lors de votre premier test d'envoi, Formsubmit vous enverra un email de confirmation pour activer le service -->
+            <form id="contact-form" class="contact-form">
                 <div class="form-group">
-                    <input type="text" name="name" placeholder="Votre Nom" required>
+                    <input type="text" id="from_name" name="from_name" placeholder="Votre Nom" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" name="email" placeholder="Votre Email" required>
+                    <input type="email" id="from_email" name="from_email" placeholder="Votre Email" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="subject" placeholder="Sujet" required>
+                    <input type="text" id="subject" name="subject" placeholder="Sujet" required>
                 </div>
                 <div class="form-group">
-                    <textarea name="message" placeholder="Votre Message (minimum 15 caractères)" rows="5" minlength="15"
-                        required></textarea>
+                    <textarea id="message" name="message" placeholder="Votre Message (minimum 15 caractères)" rows="5"
+                        minlength="15" required></textarea>
                 </div>
                 <div class="form-actions">
                     <button type="reset" class="btn-cancel">Annuler</button>
-                    <button type="submit" class="btn-submit">Envoyer</button>
+                    <button type="submit" class="btn-submit" id="btn-submit">
+                        <span id="btn-text">Envoyer</span>
+                        <i class="fas fa-paper-plane" id="btn-icon"></i>
+                    </button>
                 </div>
+                <div id="form-feedback" class="form-feedback" style="display:none;"></div>
             </form>
 
             <div class="social-icons">
