@@ -135,40 +135,46 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentTheme = localStorage.getItem('theme');
     if (currentTheme) {
         body.classList.add(currentTheme);
-        if (currentTheme === 'dark-mode') {
+        if (toggleBtn && currentTheme === 'dark-mode') {
             toggleBtn.classList.replace('fa-moon', 'fa-sun');
         }
     }
 
-    toggleBtn.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
 
-        if (body.classList.contains('dark-mode')) {
-            toggleBtn.classList.replace('fa-moon', 'fa-sun');
-            localStorage.setItem('theme', 'dark-mode');
-        } else {
-            toggleBtn.classList.replace('fa-sun', 'fa-moon');
-            localStorage.setItem('theme', 'light-mode');
-        }
-    });
+            if (body.classList.contains('dark-mode')) {
+                toggleBtn.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark-mode');
+            } else {
+                toggleBtn.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'light-mode');
+            }
+        });
+    }
 
     // --- 2. MENU MOBILE BURGER ---
     const burger = document.querySelector('.burger');
     const nav = document.querySelector('.nav-links');
     const navLinks = document.querySelectorAll('.nav-links li a');
 
-    burger.addEventListener('click', () => {
-        nav.classList.toggle('nav-active');
-        burger.classList.toggle('toggle');
-    });
+    if (burger) {
+        burger.addEventListener('click', () => {
+            if (nav) nav.classList.toggle('nav-active');
+            burger.classList.toggle('toggle');
+        });
+    }
 
     // Fermer le menu au clic
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            nav.classList.remove('nav-active');
-            burger.classList.remove('toggle');
+    if (navLinks) {
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (nav) nav.classList.remove('nav-active');
+                if (burger) burger.classList.remove('toggle');
+            });
         });
-    });
+    }
 
     // --- 3. TYPING EFFECT (Machine à écrire) ---
     const TypeWriter = function (txtElement, words, wait = 3000) {
@@ -240,10 +246,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const pageYOffset = window.pageYOffset;
 
         // Back to top
-        if (pageYOffset > 500) {
-            toTopBtn.classList.add('active');
-        } else {
-            toTopBtn.classList.remove('active');
+        if (toTopBtn) {
+            if (pageYOffset > 500) {
+                toTopBtn.classList.add('active');
+            } else {
+                toTopBtn.classList.remove('active');
+            }
         }
 
         // Active Link on Scroll (ScrollSpy)
@@ -257,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         navItems.forEach(a => {
             a.classList.remove('active-link');
-            if (a.getAttribute('href').includes(current)) {
+            if (current && a.getAttribute('href').includes(current)) {
                 a.classList.add('active-link');
             }
         });
