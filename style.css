@@ -37,8 +37,8 @@
 /* --- Page Entrance Animations (Fade-in & Stagger) --- */
 .page-fade-in {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(15px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .page-fade-in.is-visible {
@@ -1257,6 +1257,110 @@ body.dark-mode .form-feedback.error {
 .social-icon.linkedin:hover {
     background: #0077B5;
     transition: background 0.3s ease-in-out;
+}
+
+/* --- Menu Téléphone Dropdown --- */
+.phone-dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.phone-toggler {
+    cursor: pointer;
+    background: #34495e;
+}
+
+.phone-toggler:hover {
+    background: #2c3e50;
+}
+
+.phone-dropdown {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 8px;
+    min-width: 240px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 100;
+    border: 1px solid #e2e8f0;
+}
+
+body.dark-mode .phone-dropdown {
+    background: #1f2937;
+    border-color: #374151;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.phone-dropdown.active {
+    display: flex;
+    animation: fadeInUp 0.3s ease forwards;
+}
+
+.phone-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    color: #334155;
+    text-align: left;
+}
+
+body.dark-mode .phone-item {
+    color: #e2e8f0;
+}
+
+.phone-item i {
+    font-size: 1.1rem;
+    color: #94a3b8;
+}
+
+.phone-item .phone-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.phone-item .provider {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.phone-item .number {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.phone-item:hover {
+    background: #f8fafc;
+    transform: translateX(5px);
+}
+
+body.dark-mode .phone-item:hover {
+    background: #374151;
+}
+
+.phone-item.orange:hover i {
+    color: #f39c12;
+}
+
+.phone-item.mtn:hover i {
+    color: #f1c40f;
+}
+
+@media (max-width: 768px) {
+    .phone-dropdown {
+        bottom: 75px;
+        min-width: 220px;
+    }
 }
 
 footer {

@@ -1,19 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 0. ANIMATION DE CHARGEMENT & APPARITION (Stagger & Fade-in) ---
+    // --- 0. ANIMATION DE CHARGEMENT & APPARITION (Modern Reveal) ---
     const loaderBar = document.getElementById('page-loader-bar');
-    if (loaderBar) {
-        // Animation rapide de la barre de progression (fictive mais réactive)
-        setTimeout(() => { loaderBar.style.width = '40%'; }, 50);
-        setTimeout(() => { loaderBar.style.width = '80%'; }, 200);
 
-        // Finalisation et déclenchement du fade-in global
-        setTimeout(() => {
+    // Fonction pour déclencher les animations d'entrée
+    const startReveal = () => {
+        if (loaderBar) {
             loaderBar.style.width = '100%';
             setTimeout(() => {
                 loaderBar.style.opacity = '0';
 
-                // Décalage (Stagger) de l'apparition des éléments clés
                 const staggerElements = [
                     document.querySelector('.navbar'),
                     document.querySelector('.hero-badge'),
@@ -26,15 +22,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 staggerElements.forEach((el, index) => {
                     if (el) {
                         el.classList.add('page-fade-in');
-                        // Petit décalage (stagger) de 150ms par élément
                         setTimeout(() => {
                             el.classList.add('is-visible');
-                        }, index * 150);
+                        }, index * 100); // Délai de 0.1s par élément
                     }
                 });
+            }, 300);
+        }
+    };
 
-            }, 300); // Temps court avant disparition de la barre
-        }, 400); // Simulation d'un chargement très rapide
+    if (loaderBar) {
+        // Barre de progression "Smart"
+        if (document.readyState === 'complete') {
+            startReveal();
+        } else {
+            // Progression fictive pendant le chargement
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress > 90) {
+                    clearInterval(interval);
+                } else {
+                    loaderBar.style.width = progress + '%';
+                }
+            }, 100);
+
+            window.addEventListener('load', () => {
+                clearInterval(interval);
+                startReveal();
+            });
+        }
     }
 
     // --- FORMULAIRE DE CONTACT (mailto) ---
@@ -343,4 +360,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Handle initial reveal on load
     revealOnScroll();
+
+    // --- 4. PHONE DROPDOWN TOGGLE ---
+    const phoneToggler = document.querySelector('.phone-toggler');
+    const phoneDropdown = document.querySelector('.phone-dropdown');
+
+    if (phoneToggler && phoneDropdown) {
+        phoneToggler.addEventListener('click', (e) => {
+            e.stopPropagation();
+            phoneDropdown.classList.toggle('active');
+        });
+
+        // Fermer le menu si on clique ailleurs
+        document.addEventListener('click', (e) => {
+            if (!phoneDropdown.contains(e.target) && !phoneToggler.contains(e.target)) {
+                phoneDropdown.classList.remove('active');
+            }
+        });
+    }
 });
