@@ -21,6 +21,31 @@
     box-shadow: 0 8px 25px rgba(0, 86, 179, 0.3);
 }
 
+/* --- Golden Progress Bar --- */
+#page-loader-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: #f1c40f;
+    z-index: 99999;
+    width: 0%;
+    transition: width 0.4s ease, opacity 0.5s ease;
+    box-shadow: 0 0 10px rgba(241, 196, 15, 0.8), 0 0 5px rgba(241, 196, 15, 0.5);
+}
+
+/* --- Page Entrance Animations (Fade-in & Stagger) --- */
+.page-fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.page-fade-in.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* --- 1. CONFIGURATION & VARIABLES --- */
 :root {
     /* Couleurs Principales (Charte) */
@@ -1504,7 +1529,7 @@ footer .location:hover i {
         width: 75%;
         justify-content: center;
         transform: translateX(100%);
-        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
         border-left: 1px solid var(--border-color);
     }

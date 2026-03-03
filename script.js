@@ -1,4 +1,42 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    // --- 0. ANIMATION DE CHARGEMENT & APPARITION (Stagger & Fade-in) ---
+    const loaderBar = document.getElementById('page-loader-bar');
+    if (loaderBar) {
+        // Animation rapide de la barre de progression (fictive mais réactive)
+        setTimeout(() => { loaderBar.style.width = '40%'; }, 50);
+        setTimeout(() => { loaderBar.style.width = '80%'; }, 200);
+
+        // Finalisation et déclenchement du fade-in global
+        setTimeout(() => {
+            loaderBar.style.width = '100%';
+            setTimeout(() => {
+                loaderBar.style.opacity = '0';
+
+                // Décalage (Stagger) de l'apparition des éléments clés
+                const staggerElements = [
+                    document.querySelector('.navbar'),
+                    document.querySelector('.hero-badge'),
+                    document.querySelector('.hero-content h1'),
+                    document.querySelector('.hero-content h2'),
+                    document.querySelector('.hero-content p'),
+                    document.querySelector('.hero-btns')
+                ];
+
+                staggerElements.forEach((el, index) => {
+                    if (el) {
+                        el.classList.add('page-fade-in');
+                        // Petit décalage (stagger) de 150ms par élément
+                        setTimeout(() => {
+                            el.classList.add('is-visible');
+                        }, index * 150);
+                    }
+                });
+
+            }, 300); // Temps court avant disparition de la barre
+        }, 400); // Simulation d'un chargement très rapide
+    }
+
     // --- FORMULAIRE DE CONTACT (mailto) ---
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
