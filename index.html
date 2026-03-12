@@ -72,8 +72,8 @@
                 <li><a href="#apropos">A Propos</a></li>
                 <li><a href="#expertise">Expertise</a></li>
                 <li><a href="#outils">Outils</a></li>
+                <li><a href="#parcours">Parcours</a></li>
                 <li><a href="#interets">Intérêts</a></li>
-                <li><a href="/compte" class="">Compte</a></li>
                 <li><a href="#contact" class="btn-nav">Me Contacter</a></li>
                 <li class="theme-switch-wrapper">
                     <i class="fas fa-moon" id="theme-toggle" aria-label="Changer de thème"></i>
@@ -265,6 +265,154 @@
                         <li><i class="fas fa-check-circle dot-ice"></i> <span>Vercel (Déploiement & Hosting)</span></li>
 
                     </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION PARCOURS ACADÉMIQUE & EXPERTISES -->
+    <section id="parcours" class="section-padding">
+        <div class="container">
+            <!-- Parcours Académique -->
+            <h3 class="section-title">
+                <span class="title-bar orange"></span> 🎓 PARCOURS ACADÉMIQUE
+            </h3>
+            <p class="contact-subtitle" style="margin-bottom: 40px; text-align: left;">Fondations Scientifiques et Spécialisation Technique</p>
+            
+            <style>
+                .academic-timeline {
+                    position: relative;
+                    padding-left: 30px;
+                    border-left: 3px solid var(--orange-accent);
+                    margin-bottom: 60px;
+                    margin-left: 10px;
+                }
+                .academic-item {
+                    position: relative;
+                    margin-bottom: 30px;
+                }
+                .academic-item:last-child {
+                    margin-bottom: 0;
+                }
+                .academic-dot {
+                    position: absolute;
+                    left: -38.5px;
+                    top: 0;
+                    width: 14px;
+                    height: 14px;
+                    border-radius: 50%;
+                    background: var(--text-light);
+                    border: 3px solid var(--bg-body);
+                    transition: 0.3s;
+                }
+                .academic-item.active .academic-dot {
+                    background: var(--blue-primary);
+                    box-shadow: 0 0 10px rgba(0, 86, 179, 0.5);
+                }
+                .academic-date {
+                    font-size: 1.1rem;
+                    font-weight: 700;
+                    margin-bottom: 10px;
+                }
+                .academic-item.active .academic-date {
+                    color: var(--orange-accent);
+                }
+                .academic-item:not(.active) .academic-date {
+                    color: var(--text-light);
+                }
+                .academic-desc {
+                    font-weight: 500;
+                    font-size: 1.05rem;
+                    color: var(--text-main);
+                }
+                
+                .cert-badge {
+                    display: inline-block;
+                    padding: 4px 12px;
+                    border-radius: 20px;
+                    font-size: 0.85rem;
+                    font-weight: 600;
+                    margin-bottom: 15px;
+                }
+                .cert-badge.blue {
+                    background: var(--ice-bg);
+                    color: var(--blue-primary);
+                }
+                .cert-badge.orange {
+                    background: rgba(255, 107, 0, 0.1);
+                    color: var(--orange-accent);
+                }
+                .cert-icon.blue {
+                    background: var(--ice-bg);
+                    color: var(--blue-primary);
+                }
+                .cert-icon.orange {
+                    background: rgba(255, 107, 0, 0.1);
+                    color: var(--orange-accent);
+                }
+            </style>
+
+            <div class="academic-timeline">
+                <div class="academic-item active page-fade-in is-visible">
+                    <span class="academic-dot"></span>
+                    <div class="info-box">
+                        <h4 class="academic-date">2025 - 2026 (En cours)</h4>
+                        <p class="academic-desc">Étudiant en Réseaux et Sécurité Informatique.</p>
+                    </div>
+                </div>
+                
+                <div class="academic-item page-fade-in is-visible">
+                    <span class="academic-dot"></span>
+                    <div class="info-box">
+                        <h4 class="academic-date">2023 - 2024</h4>
+                        <p class="academic-desc">Terminale D — Lycée Scientifique de Yamoussoukro (LSY).</p>
+                    </div>
+                </div>
+
+                <div class="academic-item page-fade-in is-visible">
+                    <span class="academic-dot"></span>
+                    <div class="info-box">
+                        <h4 class="academic-date">2022 - 2023</h4>
+                        <p class="academic-desc">Première D — Lycée Scientifique de Yamoussoukro (LSY).</p>
+                    </div>
+                </div>
+
+                <div class="academic-item page-fade-in is-visible">
+                    <span class="academic-dot"></span>
+                    <div class="info-box">
+                        <h4 class="academic-date">2021 - 2022</h4>
+                        <p class="academic-desc">Seconde C — Lycée Scientifique de Yamoussoukro (LSY).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expertises & Certifications -->
+            <h3 class="section-title">
+                <span class="title-bar orange"></span> 🏆 EXPERTISES & CERTIFICATIONS
+            </h3>
+            <p class="contact-subtitle" style="margin-bottom: 40px; text-align: left;">Compétences Numériques et Créatives</p>
+
+            <div class="grid-2">
+                <div class="service-card page-fade-in is-visible">
+                    <div class="icon-wrapper cert-icon blue" style="font-size: 1.6rem;">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom: 5px;">Développement Web (Fullstack)</h4>
+                        <span class="cert-badge blue">GOMYCODE (2025 - 2026)</span>
+                        <p><strong>Focus :</strong> Architecture frontend, interfaces réactives et optimisation SEO.</p>
+                    </div>
+                </div>
+
+                <div class="service-card page-fade-in is-visible">
+                    <div class="icon-wrapper cert-icon orange" style="font-size: 1.6rem;">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom: 5px;">Design Graphique & Création Vidéo</h4>
+                        <span class="cert-badge orange">Andrew Young Center (2025 - 2026)</span>
+                        <p><strong>Focus :</strong> Identité visuelle, montage professionnel et storytelling numérique.</p>
+                    </div>
                 </div>
             </div>
         </div>
