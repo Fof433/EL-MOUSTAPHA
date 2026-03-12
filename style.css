@@ -1,27 +1,4 @@
-.btn-download-cv {
-    padding: 14px 32px;
-    border-radius: 8px;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background: var(--blue-primary);
-    color: #fff !important;
-    box-shadow: 0 4px 15px rgba(0, 86, 179, 0.2);
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-}
-
-.btn-download-cv:hover {
-    background: var(--blue-dark);
-    color: #fff !important;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 86, 179, 0.3);
-}
-
-/* --- Golden Progress Bar --- */
+/* These lines were duplicate rules for .btn-download-cv that are now managed properly below with the other hero buttons */
 #page-loader-bar {
     position: fixed;
     top: 0;
@@ -341,27 +318,94 @@ ul {
     position: relative;
     padding-top: 70px;
     overflow: hidden;
-    background: linear-gradient(135deg, #ffffff 0%, #ADD8E6 30%, #ffffff 60%, #ADD8E6 100%);
-    background-size: 300% 300%;
-    animation: heroGradientShift 12s ease-in-out infinite;
+    /* The static gradient background is intentionally removed in favor of the image slider */
+    background: var(--bg-body); 
 }
 
-@keyframes heroGradientShift {
+/* --- Hero Slider --- */
+.hero-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.hero-slider .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    animation: slideShow 15s linear infinite; /* 3 images x 5s each */
+}
+
+/* Dark overlay to ensure text is always readable regardless of the background image */
+.hero-slider .slide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 86, 179, 0.4) 0%, rgba(17, 24, 39, 0.8) 100%);
+    z-index: 1;
+}
+
+/* Stagger the animations so they fade nicely into each other */
+.hero-slider .slide:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.hero-slider .slide:nth-child(2) {
+    animation-delay: 5s;
+}
+
+.hero-slider .slide:nth-child(3) {
+    animation-delay: 10s;
+}
+
+@keyframes slideShow {
     0% {
-        background-position: 0% 50%;
+        opacity: 0;
+        transform: scale(1.05); /* Slight zoom in effect */
     }
-
+    10% {
+        opacity: 1;
+        transform: scale(1.03);
+    }
     33% {
-        background-position: 50% 30%;
+        opacity: 1;
+        transform: scale(1); /* Return to normal scale */
     }
-
-    66% {
-        background-position: 100% 60%;
+    43% {
+        opacity: 0;
+        transform: scale(1.05); /* Zoom out smoothly while fading */
     }
-
     100% {
-        background-position: 0% 50%;
+        opacity: 0;
     }
+}
+
+/* Ensure the content sits on top of the slider and background overlay */
+.hero-content {
+    position: relative;
+    z-index: 10;
+}
+
+.hero-content h1, 
+.hero-content p {
+    color: #ffffff;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Good contrast on any image */
+}
+
+/* Ensure styling text color correctly overrides when on light mode in hero, since overlay is dark */
+body:not(.dark-mode) .hero-content h1 {
+    color: #ffffff; 
 }
 
 /* Canvas pour les molécules */
@@ -502,23 +546,37 @@ ul {
 .hero-btns {
     margin-top: 35px;
     display: flex;
-    gap: 20px;
+    flex-direction: column; /* Stacks the buttons vertically on smaller screens by default or you can use wrap */
+    gap: 15px; 
+    align-items: center; /* Centers the buttons */
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .hero-btns {
+        flex-direction: row; /* Horizontal on larger screens */
+    }
 }
 
 .btn-primary,
-.btn-secondary {
-    padding: 14px 32px;
+.btn-secondary,
+.btn-download-cv {
+    padding: 14px 24px; /* Slightly reduced padding to make them less bulky */
     border-radius: 8px;
     font-weight: 600;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     transition: 0.3s;
+    width: 260px; /* Fixed width for uniformity */
+    max-width: 100%; /* Ensures they don't break on very small screens */
 }
 
 .btn-primary {
     background: var(--orange-accent);
-    color: white;
+    color: white !important;
+    border: 2px solid var(--orange-accent);
     box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
 }
 
@@ -529,12 +587,28 @@ ul {
 
 .btn-secondary {
     border: 2px solid var(--blue-primary);
-    color: var(--blue-primary);
+    color: white !important; /* Changed to white for better visibility against dark backgrounds */
+    background: transparent;
 }
 
 .btn-secondary:hover {
     background: var(--blue-primary);
-    color: white;
+    color: white !important;
+}
+
+.btn-download-cv {
+    background: var(--blue-primary);
+    color: white !important;
+    border: 2px solid var(--blue-primary);
+    box-shadow: 0 4px 15px rgba(0, 86, 179, 0.2);
+    cursor: pointer;
+}
+
+.btn-download-cv:hover {
+    background: var(--blue-dark);
+    border-color: var(--blue-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 86, 179, 0.3);
 }
 
 /* --- SECTION A PROPOS (Profil) --- */
@@ -788,6 +862,91 @@ ul {
     color: var(--orange-accent);
     flex-shrink: 0;
     margin-top: 0.2rem;
+}
+
+
+/* === SECTION PARCOURS ACADÉMIQUE === */
+.academic-timeline {
+    position: relative;
+    padding-left: 30px;
+    border-left: 3px solid var(--orange-accent);
+    margin-bottom: 60px;
+    margin-left: 10px;
+}
+
+.academic-item {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.academic-item:last-child {
+    margin-bottom: 0;
+}
+
+.academic-dot {
+    position: absolute;
+    left: -38.5px;
+    top: 0;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--text-light);
+    border: 3px solid var(--bg-body);
+    transition: 0.3s;
+}
+
+.academic-item.active .academic-dot {
+    background: var(--blue-primary);
+    box-shadow: 0 0 10px rgba(0, 86, 179, 0.5);
+}
+
+.academic-date {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.academic-item.active .academic-date {
+    color: var(--orange-accent);
+}
+
+.academic-item:not(.active) .academic-date {
+    color: var(--text-light);
+}
+
+.academic-desc {
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: var(--text-main);
+}
+
+.cert-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.cert-badge.blue {
+    background: var(--ice-bg);
+    color: var(--blue-primary);
+}
+
+.cert-badge.orange {
+    background: rgba(255, 107, 0, 0.1);
+    color: var(--orange-accent);
+}
+
+.cert-icon.blue {
+    background: var(--ice-bg);
+    color: var(--blue-primary);
+}
+
+.cert-icon.orange {
+    background: rgba(255, 107, 0, 0.1);
+    color: var(--orange-accent);
 }
 
 /* === LISTES NETTOYÉES === */
@@ -1192,7 +1351,7 @@ body.dark-mode .form-feedback.error {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 20px; /* Reduced gap to match the image */
     margin-top: 40px;
     flex-wrap: wrap;
     position: relative;
@@ -1200,55 +1359,85 @@ body.dark-mode .form-feedback.error {
 }
 
 .social-icon {
-    width: 60px;
-    height: 60px;
-    background: #2c3e50;
+    width: 48px; /* Slightly larger for better touch targets but still compact */
+    height: 48px;
+    background: #314050; /* Specific dark slate color from the image */
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: none;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Soft, elegant shadow */
+    position: relative; /* For tooltip positioning */
+    cursor: pointer;
 }
 
 .social-icon i {
-    font-size: 1.5rem;
-    color: white;
+    font-size: 1.25rem;
+    color: #ffffff; /* Crisp white icons */
     transition: all 0.3s ease;
 }
 
+/* Base Hover Strategy: Slight lift, brighter background, crisp shadow */
 .social-icon:hover {
-    transform: translateY(-5px) scale(1.1);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transform: translateY(-4px); /* Smooth lift */
+    background: #3c4f63; /* Slightly lighter shade on hover */
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
 }
 
 .social-icon:active {
-    transform: translateY(-5px) scale(1.05);
-    /* Reste soulevé mais se réduit légèrement pour l'effet clic */
-    transition: transform 0.1s ease;
-    /* Transition plus rapide pour le clic */
+    transform: translateY(-1px) scale(0.98); /* Satisfying click press */
+    transition: transform 0.1s;
 }
 
-.social-icon.whatsapp:hover {
-    background: #25D366;
+/* Tooltips */
+.social-icon::after {
+    content: attr(aria-label);
+    position: absolute;
+    top: -45px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: #1e293b;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.social-icon.email:hover {
-    background: #EA4335;
+/* Tooltip Arrow */
+.social-icon::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    border-width: 6px 6px 0 6px;
+    border-style: solid;
+    border-color: #1e293b transparent transparent transparent;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
 }
 
-.social-icon.facebook:hover {
-    background: #1877F2;
+.social-icon:hover::after,
+.social-icon:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
 }
 
-.social-icon.linkedin:hover {
-    background: #0077B5;
-    transition: background 0.3s ease-in-out;
-}
-
-/* --- Menu Téléphone Dropdown --- */
+/* Remove colored backgrounds on hover to maintain the elegant dark theme from the image, 
+   except for the phone toggler if it remains */
 .phone-dropdown-wrapper {
     position: relative;
     display: inline-block;

@@ -89,6 +89,15 @@
     </nav>
 
     <header id="accueil" class="hero-section">
+        <!-- Slider Backgrounds -->
+        <div class="hero-slider">
+            <div class="slide" style="background-image: url('images/FOND1.jpg');"></div>
+            <div class="slide" style="background-image: url('images/FOND2.jpg');"></div>
+            <div class="slide" style="background-image: url('images/FOND3.jpg');"></div>
+            <!-- Overlay for better text readability -->
+            <div class="slide-overlay"></div>
+        </div>
+
         <canvas id="molecules-canvas"></canvas>
         <div class="shape shape-1"></div>
         <div class="shape shape-2"></div>
@@ -278,79 +287,6 @@
                 <span class="title-bar orange"></span> 🎓 PARCOURS ACADÉMIQUE
             </h3>
             <p class="contact-subtitle" style="margin-bottom: 40px; text-align: left;">Fondations Scientifiques et Spécialisation Technique</p>
-            
-            <style>
-                .academic-timeline {
-                    position: relative;
-                    padding-left: 30px;
-                    border-left: 3px solid var(--orange-accent);
-                    margin-bottom: 60px;
-                    margin-left: 10px;
-                }
-                .academic-item {
-                    position: relative;
-                    margin-bottom: 30px;
-                }
-                .academic-item:last-child {
-                    margin-bottom: 0;
-                }
-                .academic-dot {
-                    position: absolute;
-                    left: -38.5px;
-                    top: 0;
-                    width: 14px;
-                    height: 14px;
-                    border-radius: 50%;
-                    background: var(--text-light);
-                    border: 3px solid var(--bg-body);
-                    transition: 0.3s;
-                }
-                .academic-item.active .academic-dot {
-                    background: var(--blue-primary);
-                    box-shadow: 0 0 10px rgba(0, 86, 179, 0.5);
-                }
-                .academic-date {
-                    font-size: 1.1rem;
-                    font-weight: 700;
-                    margin-bottom: 10px;
-                }
-                .academic-item.active .academic-date {
-                    color: var(--orange-accent);
-                }
-                .academic-item:not(.active) .academic-date {
-                    color: var(--text-light);
-                }
-                .academic-desc {
-                    font-weight: 500;
-                    font-size: 1.05rem;
-                    color: var(--text-main);
-                }
-                
-                .cert-badge {
-                    display: inline-block;
-                    padding: 4px 12px;
-                    border-radius: 20px;
-                    font-size: 0.85rem;
-                    font-weight: 600;
-                    margin-bottom: 15px;
-                }
-                .cert-badge.blue {
-                    background: var(--ice-bg);
-                    color: var(--blue-primary);
-                }
-                .cert-badge.orange {
-                    background: rgba(255, 107, 0, 0.1);
-                    color: var(--orange-accent);
-                }
-                .cert-icon.blue {
-                    background: var(--ice-bg);
-                    color: var(--blue-primary);
-                }
-                .cert-icon.orange {
-                    background: rgba(255, 107, 0, 0.1);
-                    color: var(--orange-accent);
-                }
-            </style>
 
             <div class="academic-timeline">
                 <div class="academic-item active page-fade-in is-visible">

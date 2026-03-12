@@ -112,11 +112,12 @@ document.addEventListener('DOMContentLoaded', () => {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.radius = Math.random() * 3 + 2;
+                // Vitesse légèrement augmentée pour plus de dynamisme
+                this.vx = (Math.random() - 0.5) * 0.8; 
+                this.vy = (Math.random() - 0.5) * 0.8;
+                this.radius = Math.random() * 2 + 1.5; // Tailles variées
                 this.connections = [];
-                this.maxDistance = 150;
+                this.maxDistance = 180; // Distance de connexion plus longue
             }
 
             update() {
@@ -133,18 +134,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             draw() {
-                // Dessiner la molécule
+                // Point central incandescent (Blanc pur)
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(0, 123, 255, 0.18)'; // Bleu plus dilué et transparent
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'; 
                 ctx.fill();
 
-                // Cercle extérieur plus lumineux
+                // Halo lumineux autour (Orange contrastant)
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius + 3, 0, Math.PI * 2);
-                ctx.strokeStyle = 'rgba(255, 107, 0, 0.12)'; // Orange encore plus transparent
-                ctx.lineWidth = 2;
-                ctx.stroke();
+                ctx.arc(this.x, this.y, this.radius + 4, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 107, 0, 0.15)'; 
+                ctx.fill();
             }
 
             findConnections(molecules) {
@@ -171,7 +171,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     ctx.beginPath();
                     ctx.moveTo(this.x, this.y);
                     ctx.lineTo(connection.molecule.x, connection.molecule.y);
-                    ctx.strokeStyle = `rgba(0, 123, 255, ${opacity * 0.09})`;
+                    // Lignes blanches semi-transparentes pour bien ressortir sur le fond sombre
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.25})`; 
                     ctx.lineWidth = 1;
                     ctx.stroke();
                 }
@@ -180,7 +181,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Créer les molécules
         const molecules = [];
-        const moleculeCount = 25;
+        // Augmenter un peu le nombre vu qu'on a un grand fond
+        const moleculeCount = window.innerWidth > 768 ? 40 : 20; 
 
         for (let i = 0; i < moleculeCount; i++) {
             molecules.push(new Molecule());
@@ -190,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Mettre à jour et dessiner les connexions
+            // Mettre à jour et dessiner les connexions d'abord (pour qu'elles soient en dessous)
             for (let molecule of molecules) {
                 molecule.findConnections(molecules);
             }
@@ -199,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 molecule.drawConnections();
             }
 
-            // Mettre à jour et dessiner les molécules
+            // Mettre à jour et dessiner les molécules par-dessus
             for (let molecule of molecules) {
                 molecule.update();
                 molecule.draw();
@@ -377,5 +379,57 @@ document.addEventListener('DOMContentLoaded', () => {
                 phoneDropdown.classList.remove('active');
             }
         });
+    }
+    // --- 5. SOCIAL ICONS ANIMATION & INTERACTIVITY ---
+    const socialIcons = document.querySelectorAll('.social-icon');
+    if (socialIcons.length > 0) {
+        // Entrance animation
+        const revealIcons = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 50; 
+
+            socialIcons.forEach((icon, index) => {
+                const elementTop = icon.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    setTimeout(() => {
+                        icon.style.opacity = '1';
+                        icon.style.transform = 'translateY(0) scale(1)';
+                    }, index * 100);
+                }
+            });
+        };
+
+        socialIcons.forEach((icon) => {
+            icon.style.opacity = '0';
+            icon.style.transform = 'translateY(20px) scale(0.9)';
+            
+            // --- Advanced Hover Interaction (Magnetic / 3D Effect) ---
+            icon.addEventListener('mousemove', (e) => {
+                const rect = icon.getBoundingClientRect();
+                const x = e.clientX - rect.left; // x position within the element.
+                const y = e.clientY - rect.top;  // y position within the element.
+                
+                // Calculate center
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                // Calculate distance from center (max 1 for edges)
+                const distanceX = (x - centerX) / centerX;
+                const distanceY = (y - centerY) / centerY;
+                
+                // Apply subtle 3D tilt and translation
+                icon.style.transform = `translateY(-4px) scale(1.05) perspective(100px) rotateX(${-distanceY * 10}deg) rotateY(${distanceX * 10}deg)`;
+                icon.style.transition = 'transform 0.1s ease'; // Quick tracking
+            });
+
+            icon.addEventListener('mouseleave', () => {
+                // Reset to default hover state defined in CSS or base state
+                icon.style.transform = ''; 
+                icon.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'; // Smooth return
+            });
+        });
+
+        window.addEventListener('scroll', revealIcons);
+        setTimeout(revealIcons, 500);
     }
 });
