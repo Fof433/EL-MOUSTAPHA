@@ -636,8 +636,8 @@ body:not(.dark-mode) .hero-content h1 {
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 8px;
-    padding: 18px 30px;
+    border-radius: 6px; /* Carte de l'accueil droite et non ovale */
+    padding: 18px 24px;
     max-width: 520px;
     width: 100%;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255,255,255,0.05) inset;
@@ -752,7 +752,7 @@ body:not(.dark-mode) .hero-content h1 {
     .hero-stats {
         margin-top: 12px;
         padding: 10px 14px;
-        border-radius: 6px;
+        border-radius: 6px; /* Droit sur mobile */
         max-width: 320px;
     }
 
@@ -904,8 +904,10 @@ body:not(.dark-mode) .hero-content h1 {
     display: flex;
     flex-direction: column;
     height: 100%;
-    border-radius: 8px;
+    border-radius: 6px; /* Cartes droites, non ovales */
     border: none;
+    text-align: left; /* Textes bien ordonnés */
+    align-items: flex-start;
     background: #ffffff;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -918,8 +920,9 @@ body:not(.dark-mode) .hero-content h1 {
     display: flex;
     flex-direction: column;
     height: 100%;
-    border-radius: 8px;
+    border-radius: 6px; /* Droit */
     border: 1px solid var(--border-color);
+    text-align: left;
     background: var(--card-bg);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03), 0 15px 30px -10px rgba(0, 86, 179, 0.18);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1333,7 +1336,7 @@ body:not(.dark-mode) .hero-content h1 {
 
     /* Design Carte Blanche (selon image fournie) */
     background: #ffffff;
-    border-radius: 8px;
+    border-radius: 6px; /* Droit et rectangulaire */
     padding: 35px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -2340,15 +2343,32 @@ footer .location:hover i {
 /* --- Grille des projets --- */
 .realisations-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 2.5rem;
+    grid-template-columns: 1fr; /* Mobile first : 1 colonne */
+}
+
+@media (min-width: 768px) {
+    .realisations-grid {
+        grid-template-columns: repeat(2, 1fr); /* Tablette : 2 colonnes */
+    }
+}
+
+@media (min-width: 1024px) {
+    .realisations-grid {
+        grid-template-columns: repeat(3, 1fr); /* Desktop : 3 colonnes */
+    }
+}
+
+@keyframes elegantFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
 }
 
 /* --- Carte projet --- */
 .project-card {
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(0, 229, 255, 0.15);
-    border-radius: 8px;
+    border-radius: 40px; /* Forme ovale élégante */
     overflow: hidden;
     backdrop-filter: blur(10px);
     transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
@@ -2356,6 +2376,9 @@ footer .location:hover i {
                 border-color 0.4s ease;
     display: flex;
     flex-direction: column;
+    text-align: center;
+    align-items: center;
+    animation: elegantFloat 6.2s ease-in-out infinite alternate;
 }
 
 .project-card:hover {
@@ -2380,6 +2403,8 @@ footer .location:hover i {
     height: 100%;
     object-fit: cover;
     display: block;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
     transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -2450,6 +2475,7 @@ footer .location:hover i {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
+    justify-content: center; /* Centrage des tags */
 }
 
 .project-tag {
@@ -2486,16 +2512,17 @@ footer .location:hover i {
 .btn-project-link {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     padding: 11px 22px;
-    border-radius: 6px;
+    border-radius: 30px; /* Forme ovale/pilule pour ce bouton */
     font-weight: 700;
     font-size: 0.9rem;
     color: #00e5ff !important;
     border: 2px solid rgba(0, 229, 255, 0.4);
     background: rgba(0, 229, 255, 0.06);
     transition: all 0.3s ease;
-    align-self: flex-start;
+    align-self: center; /* Centré au lieu de flex-start */
     letter-spacing: 0.3px;
     position: relative;
     overflow: hidden;
