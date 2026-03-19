@@ -308,26 +308,42 @@ document.addEventListener('DOMContentLoaded', () => {
         new TypeWriter(txtElement, words, wait);
     }
 
-    // --- 4. SCROLL & BACK TO TOP ---
+    // --- 4. SCROLL & BACK TO TOP + INTERSECTION OBSERVER ---
     const toTopBtn = document.querySelector('.to-top');
     const sections = document.querySelectorAll('section, header');
     const navItems = document.querySelectorAll('.nav-links a');
-    const reveals = document.querySelectorAll('.scroll-reveal');
 
-    // Scroll Reveal Animation Function
-    const revealOnScroll = () => {
-        const windowHeight = window.innerHeight;
-        const elementVisible = 150;
+    // Add reveal classes dynamically to key elements
+    const elementsToReveal = document.querySelectorAll('.service-card, .info-box, .interest-card, .section-title, .about-column-left, .about-column-right, .contact-wrapper > *');
+    elementsToReveal.forEach((el, index) => {
+        el.classList.add('reveal-element');
+        // Add staggered delays for a cascading effect
+        if (index % 4 === 1) el.classList.add('reveal-delay-100');
+        if (index % 4 === 2) el.classList.add('reveal-delay-200');
+        if (index % 4 === 3) el.classList.add('reveal-delay-300');
+    });
 
-        reveals.forEach((reveal) => {
-            const elementTop = reveal.getBoundingClientRect().top;
-            if (elementTop < windowHeight - elementVisible) {
-                reveal.classList.add('active');
+    // Intersection Observer for Scroll Reveal
+    const revealOptions = {
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const revealObserver = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+                return;
             }
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target); // Stop observing once revealed
         });
-    }
+    }, revealOptions);
 
-    // Main Scroll Listener
+    document.querySelectorAll('.reveal-element').forEach(reveal => {
+        revealObserver.observe(reveal);
+    });
+
+    // Main Scroll Listener (for Navigation & Back to Top)
     window.addEventListener('scroll', () => {
         const pageYOffset = window.pageYOffset;
 
@@ -355,13 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 a.classList.add('active-link');
             }
         });
-
-        // Trigger reveal
-        revealOnScroll();
     });
-
-    // Handle initial reveal on load
-    revealOnScroll();
 
     // --- 4. PHONE DROPDOWN TOGGLE ---
     const phoneToggler = document.querySelector('.phone-toggler');
