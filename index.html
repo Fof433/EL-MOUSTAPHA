@@ -11,7 +11,7 @@
     <meta name="author" content="EL MOUSTAPHA FOFANA">
     <link rel="shortcut icon" href="images/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <meta name="google-site-verification" content="M368Z-W1xZaRSfNxgMw1lYnt2DuwE2b407aG1LNEazQ" />
@@ -72,33 +72,23 @@
                 <li><a href="#apropos">A Propos</a></li>
                 <li><a href="#expertise">Expertise</a></li>
                 <li><a href="#outils">Outils</a></li>
-                <li><a href="#parcours">Parcours</a></li>
                 <li><a href="#interets">Intérêts</a></li>
-                <li><a href="#realisations">Réalisations</a></li>
+                <li><a href="/compte" class="">Compte</a></li>
                 <li><a href="#contact" class="btn-nav">Me Contacter</a></li>
                 <li class="theme-switch-wrapper">
                     <i class="fas fa-moon" id="theme-toggle" aria-label="Changer de thème"></i>
                 </li>
             </ul>
 
-            <button class="mobile-menu-btn" aria-label="Menu mobile">
-                <i class="fas fa-bars"></i>
-            </button>
+            <div class="burger" aria-label="Menu mobile">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
         </div>
     </nav>
 
     <header id="accueil" class="hero-section">
-        <!-- Slider Backgrounds -->
-        <div class="hero-slider">
-            <div class="slide" style="background-image: url('images/FOND1.jpg');"></div>
-            <div class="slide" style="background-image: url('images/FOND2.jpg');"></div>
-            <div class="slide" style="background-image: url('images/FOND3.jpg');"></div>
-            <div class="slide" style="background-image: url('images/FOND4.jpg');"></div>
-            <div class="slide" style="background-image: url('images/FOND5.jpg');"></div>
-            <!-- Overlay for better text readability -->
-            <div class="slide-overlay"></div>
-        </div>
-
         <canvas id="molecules-canvas"></canvas>
         <div class="shape shape-1"></div>
         <div class="shape shape-2"></div>
@@ -110,43 +100,24 @@
         <div class="bubble bubble-4"></div>
         <div class="bubble bubble-5"></div>
 
-        <div class="container hero-content">
-            <div class="hero-badge fade-in-left" style="animation-delay: 0.1s; opacity: 0;">
+        <div class="container hero-content fade-in">
+            <div class="hero-badge">
                 <i class="fas fa-check-circle"></i> Profil Vérifié 2026
             </div>
-            <h1 class="fade-in-right" style="animation-delay: 0.3s; opacity: 0;">FOFANA EL MOUSTAPHA</h1>
-            <h2 class="typing-text fade-in-left" style="animation-delay: 0.5s; opacity: 0;">Je suis <span class="txt-type" data-wait="3000"
+            <h1>FOFANA EL MOUSTAPHA</h1>
+            <h2 class="typing-text">Je suis <span class="txt-type" data-wait="3000"
                     data-words='["Spécialiste Sécurité", "Développeur Web", "Spécialiste Réseau","Designer graphique"]'></span>
             </h2>
 
-            <p class="hero-tagline fade-in-right" style="animation-delay: 0.7s; opacity: 0;">Solutions tech sur‑mesure · Abidjan, Yopougon.</p>
+            <p>Transformez vos défis technologiques en solutions pérennes. <br>Basé à Abidjan, Yopougon.</p>
 
-            <div class="hero-btns fade-in-left" style="animation-delay: 0.9s; opacity: 0;">
+            <div class="hero-btns">
                 <a href="#contact" class="btn-primary"><i class="fas fa-paper-plane"></i> Démarrer un projet</a>
                 <a href="#expertise" class="btn-secondary"><i class="fas fa-arrow-down"></i> En savoir plus</a>
                 <a href="#" class="btn-download-cv"><i class="fas fa-download"></i> Télécharger mon CV</a>
             </div>
-
-            <!-- ─── Statistiques ─── -->
-            <div class="hero-stats">
-                <div class="hero-stat-card reveal-element from-left">
-                    <span class="stat-value">+2</span>
-                    <span class="stat-label">Projets réalisés</span>
-                </div>
-                
-                <div class="hero-stat-card reveal-element">
-                    <span class="stat-value">+1</span>
-                    <span class="stat-label">An d'expérience</span>
-                </div>
-                
-                <div class="hero-stat-card reveal-element from-right">
-                    <span class="stat-value">100%</span>
-                    <span class="stat-label">Clients satisfaits</span>
-                </div>
-            </div>
         </div>
     </header>
-
 
     <section id="apropos" class="section-padding">
         <div class="container">
@@ -161,10 +132,10 @@
                 <div class="about-column-right">
 
                     <p>
-                        Je mets la technologie et la création stratégique au service de votre développement. Que ce soit
-                        par la sécurisation de vos réseaux, la création de votre plateforme web, ou l'intégration
-                        d'outils IA sur mesure, j'automatise vos processus. Mon engagement : faire de votre architecture
-                        numérique et visuelle un levier de réussite incontournable.
+                        Je propulse la performance des entreprises en synchronisant infrastructures critiques et
+                        Intelligence Artificielle. De la sécurisation réseau au développement web, je déploie des
+                        agents IA sur mesure et des designs stratégiques pour automatiser votre croissance. Mon
+                        engagement : transformer votre architecture technique en un levier de compétitivité redoutable.
                     </p>
                 </div>
             </div>
@@ -190,7 +161,7 @@
                         <i class="fas fa-code"></i>
                     </div>
                     <h4>Développement Web</h4>
-                    <p>Sites vitrines, e-commerce et applications web sur-mesure (HTML5, CSS3, JS,bootstrap).</p>
+                    <p>Sites vitrines, e-commerce et applications web sur-mesure (HTML5, CSS3, JS).</p>
                 </div>
                 <div class="service-card delay-200">
                     <div class="icon-wrapper">
@@ -299,84 +270,6 @@
         </div>
     </section>
 
-    <!-- SECTION PARCOURS ACADÉMIQUE & EXPERTISES -->
-    <section id="parcours" class="section-padding">
-        <div class="container">
-            <!-- Parcours Académique -->
-            <h3 class="section-title">
-                <span class="title-bar orange"></span> 🎓 PARCOURS ACADÉMIQUE
-            </h3>
-            <p class="contact-subtitle" style="margin-bottom: 40px; text-align: left;">Fondations Scientifiques et
-                Spécialisation Technique</p>
-
-            <div class="academic-timeline">
-                <div class="academic-item reveal-element">
-                    <span class="academic-dot"></span>
-                    <div class="info-box">
-                        <h4 class="academic-date">2025 - 2026 (En cours)</h4>
-                        <p class="academic-desc">Étudiant en Réseaux et Sécurité Informatique.</p>
-                    </div>
-                </div>
-
-                <div class="academic-item reveal-element">
-                    <span class="academic-dot"></span>
-                    <div class="info-box">
-                        <h4 class="academic-date">2024 - 2025</h4>
-                        <p class="academic-desc">Terminale D — Lycée Mixte 2 de Yamoussoukro (LM2).</p>
-                    </div>
-                </div>
-
-                <div class="academic-item reveal-element">
-                    <span class="academic-dot"></span>
-                    <div class="info-box">
-                        <h4 class="academic-date">2022 - 2023</h4>
-                        <p class="academic-desc">Première D — Lycée Scientifique de Yamoussoukro (LSY).</p>
-                    </div>
-                </div>
-
-                <div class="academic-item reveal-element">
-                    <span class="academic-dot"></span>
-                    <div class="info-box">
-                        <h4 class="academic-date">2021 - 2022</h4>
-                        <p class="academic-desc">Seconde C — Lycée Scientifique de Yamoussoukro (LSY).</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Expertises & Certifications -->
-            <h3 class="section-title">
-                <span class="title-bar orange"></span> 🏆 EXPERTISES & CERTIFICATIONS
-            </h3>
-            <p class="contact-subtitle" style="margin-bottom: 40px; text-align: left;">Compétences Numériques et
-                Créatives</p>
-
-            <div class="grid-2">
-                <div class="service-card reveal-element from-left">
-                    <div class="icon-wrapper cert-icon blue" style="font-size: 1.6rem;">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <div>
-                        <h4 style="margin-bottom: 5px;">Développement Web (Fullstack)</h4>
-                        <span class="cert-badge blue">GOMYCODE (2025 - 2026)</span>
-                        <p><strong>Focus :</strong> Architecture frontend, interfaces réactives et optimisation SEO.</p>
-                    </div>
-                </div>
-
-                <div class="service-card reveal-element from-right">
-                    <div class="icon-wrapper cert-icon orange" style="font-size: 1.6rem;">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
-                    <div>
-                        <h4 style="margin-bottom: 5px;">Design Graphique & Création Vidéo</h4>
-                        <span class="cert-badge orange">Andrew Young Center (2025 - 2026)</span>
-                        <p><strong>Focus :</strong> Identité visuelle, montage professionnel et storytelling numérique.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="interets" class="section-padding">
         <div class="container">
             <h3 class="section-title">
@@ -436,39 +329,6 @@
         </div>
     </section>
 
-    <!-- SECTION RÉALISATIONS -->
-    <section id="realisations" class="section-padding realisations-section">
-        <div class="container">
-            <h3 class="section-title realisations-title">
-                <span class="title-bar cyan"></span> RÉALISATIONS
-            </h3>
-            <p class="realisations-subtitle">Des projets concrets qui reflètent mon expertise et ma créativité.</p>
-
-            <div class="realisations-grid">
-                <!-- Carte Projet 1 -->
-                <article class="project-card reveal-element">
-                    <div class="project-thumbnail-wrapper">
-                        <img src="images/projet 1.png" alt="Aperçu du site Fatoumata Fofana" class="project-thumbnail">
-                    </div>
-                    <div class="project-info">
-                        <div class="project-tags">
-                            <span class="project-tag">Web Design</span>
-                            <span class="project-tag">Responsive</span>
-                            <span class="project-tag">SEO</span>
-                        </div>
-                        <h4 class="project-title">Projet 1</h4>
-                        <p class="project-desc">Site web moderne développé avec un design responsive et une expérience
-                            utilisateur soignée, alliant esthétique contemporaine et performance technique.</p>
-                        <a href="https://fatoumata-fofana.vercel.app/" target="_blank" rel="noopener noreferrer"
-                            class="btn-project-link">
-                            <i class="fas fa-globe"></i> Voir le site
-                        </a>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
     <section id="contact" class="section-padding bg-alt">
         <div class="container contact-wrapper">
             <h3 class="section-title center" style="justify-content: center;">
@@ -478,7 +338,7 @@
             </h3>
             <p class="contact-subtitle">Un projet ? Une question ? Discutons-en.</p>
 
-            <form id="contact-form" class="contact-form from-left">
+            <form id="contact-form" class="contact-form">
                 <div class="form-group">
                     <input type="text" id="from_name" name="from_name" placeholder="Votre Nom" required>
                 </div>
@@ -502,7 +362,7 @@
                 <div id="form-feedback" class="form-feedback" style="display:none;"></div>
             </form>
 
-            <div class="social-icons from-right">
+            <div class="social-icons">
                 <a href="https://wa.me/2250584442211" target="_blank" rel="noopener noreferrer"
                     class="social-icon whatsapp" aria-label="WhatsApp">
                     <i class="fab fa-whatsapp"></i>
