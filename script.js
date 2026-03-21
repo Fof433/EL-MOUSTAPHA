@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Redimensionner le canvas
         function resizeCanvas() {
-            canvas.width = window.innerWidth;
+            canvas.width = document.documentElement.clientWidth;
             canvas.height = window.innerHeight;
         }
         resizeCanvas();
@@ -241,14 +241,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 2. MENU MOBILE BURGER ---
-    const burger = document.querySelector('.burger');
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const mobileMenuIcon = document.querySelector('.mobile-menu-btn i');
     const nav = document.querySelector('.nav-links');
     const navLinks = document.querySelectorAll('.nav-links li a');
 
-    if (burger) {
-        burger.addEventListener('click', () => {
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', () => {
             if (nav) nav.classList.toggle('nav-active');
-            burger.classList.toggle('toggle');
+            
+            // Changer l'icône
+            if (nav.classList.contains('nav-active')) {
+                mobileMenuIcon.classList.remove('fa-bars');
+                mobileMenuIcon.classList.add('fa-times');
+            } else {
+                mobileMenuIcon.classList.remove('fa-times');
+                mobileMenuIcon.classList.add('fa-bars');
+            }
         });
     }
 
@@ -257,7 +266,10 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 if (nav) nav.classList.remove('nav-active');
-                if (burger) burger.classList.remove('toggle');
+                if (mobileMenuIcon) {
+                    mobileMenuIcon.classList.remove('fa-times');
+                    mobileMenuIcon.classList.add('fa-bars');
+                }
             });
         });
     }
