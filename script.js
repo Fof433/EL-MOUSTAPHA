@@ -1,457 +1,318 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. Loading Bar
+    const loader = document.getElementById("page-loader-bar");
+    if(loader) {
+        loader.style.width = "100%";
+        setTimeout(() => { loader.style.opacity = "0"; }, 500);
+    }
 
-    // --- 0. ANIMATION DE CHARGEMENT & APPARITION (Modern Reveal) ---
-    const loaderBar = document.getElementById('page-loader-bar');
-
-    // Fonction pour déclencher les animations d'entrée
-    const startReveal = () => {
-        if (loaderBar) {
-            loaderBar.style.width = '100%';
-            setTimeout(() => {
-                loaderBar.style.opacity = '0';
-
-                const staggerElements = [
-                    document.querySelector('.navbar'),
-                    document.querySelector('.hero-badge'),
-                    document.querySelector('.hero-content h1'),
-                    document.querySelector('.hero-content h2'),
-                    document.querySelector('.hero-content p'),
-                    document.querySelector('.hero-btns')
-                ];
-
-                staggerElements.forEach((el, index) => {
-                    if (el) {
-                        el.classList.add('page-fade-in');
-                        setTimeout(() => {
-                            el.classList.add('is-visible');
-                        }, index * 100); // Délai de 0.1s par élément
-                    }
-                });
-            }, 300);
+    // 2. Sticky Navbar
+    const navbar = document.querySelector(".navbar");
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+        } else {
+            navbar.classList.remove("scrolled");
         }
+    });
+
+    // 3. Mobile Menu Toggle
+    const mobileBtn = document.querySelector(".mobile-menu-btn");
+    const navLinks = document.querySelector(".nav-links");
+    if(mobileBtn && navLinks) {
+        mobileBtn.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+            const i = mobileBtn.querySelector("i");
+            if (navLinks.classList.contains("active")) {
+                i.classList.remove("fa-bars");
+                i.classList.add("fa-times");
+            } else {
+                i.classList.remove("fa-times");
+                i.classList.add("fa-bars");
+            }
+        });
+    }
+
+    // Theme Toggle
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    if(themeToggleBtn) {
+        const savedTheme = localStorage.getItem('theme');
+        if (!savedTheme) {
+            document.body.classList.remove('light-mode'); // Force dark by default
+            localStorage.setItem('theme', 'dark');
+        } else if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            themeToggleBtn.classList.replace('fa-moon', 'fa-sun');
+        } else {
+            document.body.classList.remove('light-mode');
+            themeToggleBtn.classList.replace('fa-sun', 'fa-moon');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            if(document.body.classList.contains('light-mode')) {
+                themeToggleBtn.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'light');
+            } else {
+                themeToggleBtn.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    }
+
+    // 4. Smooth Anchor Scroll & Close Menu
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            navLinks.classList.remove("active");
+            if(mobileBtn) {
+                const i = mobileBtn.querySelector("i");
+                i.classList.remove("fa-times");
+                i.classList.add("fa-bars");
+            }
+
+            const targetId = this.getAttribute('href');
+            if(targetId && targetId !== '#') {
+                const targetEl = document.querySelector(targetId);
+                if(targetEl) {
+                    const navHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = targetEl.getBoundingClientRect().top + window.scrollY - navHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+
+    // 5. Scroll Reveal Intersection Observer (Performance 60fps)
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
     };
 
-    if (loaderBar) {
-        // Barre de progression "Smart"
-        if (document.readyState === 'complete') {
-            startReveal();
-        } else {
-            // Progression fictive pendant le chargement
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += Math.random() * 15;
-                if (progress > 90) {
-                    clearInterval(interval);
-                } else {
-                    loaderBar.style.width = progress + '%';
-                }
-            }, 100);
-
-            window.addEventListener('load', () => {
-                clearInterval(interval);
-                startReveal();
-            });
-        }
-    }
-
-    // --- FORMULAIRE DE CONTACT (mailto) ---
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            const name = document.getElementById('from_name').value.trim();
-            const email = document.getElementById('from_email').value.trim();
-            const subject = document.getElementById('subject').value.trim();
-            const message = document.getElementById('message').value.trim();
-            const feedback = document.getElementById('form-feedback');
-            const btnSubmit = document.getElementById('btn-submit');
-            const btnText = document.getElementById('btn-text');
-
-            const mailSubject = encodeURIComponent(`[Portfolio] ${subject} - de ${name}`);
-            const mailBody = encodeURIComponent(
-                `Nom    : ${name}\nEmail  : ${email}\n\nMessage :\n${message}`
-            );
-            const mailtoLink = `mailto:elmoustaphafofana51@gmail.com?subject=${mailSubject}&body=${mailBody}`;
-
-            window.location.href = mailtoLink;
-
-            // Feedback visuel
-            feedback.textContent = '✅ Votre messagerie s\'ouvre avec le message pré-rempli. Cliquez sur Envoyer dedans !';
-            feedback.className = 'form-feedback success';
-            feedback.style.display = 'block';
-            contactForm.reset();
-        });
-    }
-
-    // --- Bouton Télécharger mon CV ---
-    const btnDownloadCV = document.querySelector('.btn-download-cv');
-    if (btnDownloadCV) {
-        btnDownloadCV.addEventListener('click', function (e) {
-            e.preventDefault();
-            // Remplacez 'cv.pdf' par le nom réel du fichier CV
-            window.open('cv.pdf', '_blank');
-        });
-    }
-
-    // --- 0. ANIMATION DES MOLÉCULES ---
-    const canvas = document.getElementById('molecules-canvas');
-    if (canvas) {
-        const ctx = canvas.getContext('2d');
-
-        // Redimensionner le canvas
-        function resizeCanvas() {
-            canvas.width = document.documentElement.clientWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        // Classe Molécule
-        class Molecule {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                // Vitesse légèrement augmentée pour plus de dynamisme
-                this.vx = (Math.random() - 0.5) * 0.8; 
-                this.vy = (Math.random() - 0.5) * 0.8;
-                this.radius = Math.random() * 2 + 1.5; // Tailles variées
-                this.connections = [];
-                this.maxDistance = 180; // Distance de connexion plus longue
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                // Rebondir sur les bords
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-
-                // Rester dans les limites
-                this.x = Math.max(0, Math.min(canvas.width, this.x));
-                this.y = Math.max(0, Math.min(canvas.height, this.y));
-            }
-
-            draw() {
-                // Point central incandescent (Blanc pur)
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'; 
-                ctx.fill();
-
-                // Halo lumineux autour (Orange contrastant)
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius + 4, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(255, 107, 0, 0.15)'; 
-                ctx.fill();
-            }
-
-            findConnections(molecules) {
-                this.connections = [];
-                for (let other of molecules) {
-                    if (other !== this) {
-                        const dx = this.x - other.x;
-                        const dy = this.y - other.y;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-
-                        if (distance < this.maxDistance) {
-                            this.connections.push({
-                                molecule: other,
-                                distance: distance
-                            });
-                        }
-                    }
-                }
-            }
-
-            drawConnections() {
-                for (let connection of this.connections) {
-                    const opacity = 1 - (connection.distance / this.maxDistance);
-                    ctx.beginPath();
-                    ctx.moveTo(this.x, this.y);
-                    ctx.lineTo(connection.molecule.x, connection.molecule.y);
-                    // Lignes blanches semi-transparentes pour bien ressortir sur le fond sombre
-                    ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.25})`; 
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                }
-            }
-        }
-
-        // Créer les molécules
-        const molecules = [];
-        // Augmenter un peu le nombre vu qu'on a un grand fond
-        const moleculeCount = window.innerWidth > 768 ? 40 : 20; 
-
-        for (let i = 0; i < moleculeCount; i++) {
-            molecules.push(new Molecule());
-        }
-
-        // Animation loop
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Mettre à jour et dessiner les connexions d'abord (pour qu'elles soient en dessous)
-            for (let molecule of molecules) {
-                molecule.findConnections(molecules);
-            }
-
-            for (let molecule of molecules) {
-                molecule.drawConnections();
-            }
-
-            // Mettre à jour et dessiner les molécules par-dessus
-            for (let molecule of molecules) {
-                molecule.update();
-                molecule.draw();
-            }
-
-            requestAnimationFrame(animate);
-        }
-
-        animate();
-    }
-
-    // --- 1. DARK MODE (Avec mémorisation & Transition douce) ---
-    const toggleBtn = document.getElementById('theme-toggle');
-    const body = document.body;
-
-    // Vérifier la préférence sauvegardée
-    const currentTheme = localStorage.getItem('theme');
-    if (currentTheme) {
-        body.classList.add(currentTheme);
-        if (toggleBtn && currentTheme === 'dark-mode') {
-            toggleBtn.classList.replace('fa-moon', 'fa-sun');
-        }
-    }
-
-    if (toggleBtn) {
-        toggleBtn.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-
-            if (body.classList.contains('dark-mode')) {
-                toggleBtn.classList.replace('fa-moon', 'fa-sun');
-                localStorage.setItem('theme', 'dark-mode');
-            } else {
-                toggleBtn.classList.replace('fa-sun', 'fa-moon');
-                localStorage.setItem('theme', 'light-mode');
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
             }
         });
-    }
+    }, observerOptions);
 
-    // --- 2. MENU MOBILE BURGER ---
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const mobileMenuIcon = document.querySelector('.mobile-menu-btn i');
-    const nav = document.querySelector('.nav-links');
-    const navLinks = document.querySelectorAll('.nav-links li a');
+    document.querySelectorAll(".reveal-element").forEach(el => observer.observe(el));
 
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', () => {
-            if (nav) nav.classList.toggle('nav-active');
-            
-            // Changer l'icône
-            if (nav.classList.contains('nav-active')) {
-                mobileMenuIcon.classList.remove('fa-bars');
-                mobileMenuIcon.classList.add('fa-times');
-            } else {
-                mobileMenuIcon.classList.remove('fa-times');
-                mobileMenuIcon.classList.add('fa-bars');
-            }
-        });
-    }
-
-    // Fermer le menu au clic
-    if (navLinks) {
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (nav) nav.classList.remove('nav-active');
-                if (mobileMenuIcon) {
-                    mobileMenuIcon.classList.remove('fa-times');
-                    mobileMenuIcon.classList.add('fa-bars');
-                }
-            });
-        });
-    }
-
-    // --- 3. TYPING EFFECT (Machine à écrire) ---
-    const TypeWriter = function (txtElement, words, wait = 3000) {
-        this.txtElement = txtElement;
-        this.words = words;
-        this.txt = '';
-        this.wordIndex = 0;
-        this.wait = parseInt(wait, 10);
-        this.type();
-        this.isDeleting = false;
-    }
-
-    TypeWriter.prototype.type = function () {
-        const current = this.wordIndex % this.words.length;
-        const fullTxt = this.words[current];
-
-        if (this.isDeleting) {
-            this.txt = fullTxt.substring(0, this.txt.length - 1);
-        } else {
-            this.txt = fullTxt.substring(0, this.txt.length + 1);
-        }
-
-        this.txtElement.innerHTML = `<span class="txt">${this.txt}</span>`;
-
-        let typeSpeed = 100;
-        if (this.isDeleting) { typeSpeed /= 2; }
-
-        if (!this.isDeleting && this.txt === fullTxt) {
-            typeSpeed = this.wait;
-            this.isDeleting = true;
-        } else if (this.isDeleting && this.txt === '') {
-            this.isDeleting = false;
-            this.wordIndex++;
-            typeSpeed = 500;
-        }
-
-        setTimeout(() => this.type(), typeSpeed);
-    }
-
-    // Init TypeWriter
+    // 6. Typing Text Effect
     const txtElement = document.querySelector('.txt-type');
-    if (txtElement) {
+    if(txtElement) {
         const words = JSON.parse(txtElement.getAttribute('data-words'));
         const wait = txtElement.getAttribute('data-wait');
+        
+        class TypeWriter {
+            constructor(txtElement, words, wait = 3000) {
+                this.txtElement = txtElement;
+                this.words = words;
+                this.txt = '';
+                this.wordIndex = 0;
+                this.wait = parseInt(wait, 10);
+                this.type();
+                this.isDeleting = false;
+            }
+
+            type() {
+                const current = this.wordIndex % this.words.length;
+                const fullTxt = this.words[current];
+
+                if(this.isDeleting) {
+                    this.txt = fullTxt.substring(0, this.txt.length - 1);
+                } else {
+                    this.txt = fullTxt.substring(0, this.txt.length + 1);
+                }
+
+                this.txtElement.innerHTML = `<span class="txt">${this.txt}</span>`;
+
+                let typeSpeed = 100;
+
+                if(this.isDeleting) typeSpeed /= 2;
+
+                if(!this.isDeleting && this.txt === fullTxt) {
+                    typeSpeed = this.wait;
+                    this.isDeleting = true;
+                } else if(this.isDeleting && this.txt === '') {
+                    this.isDeleting = false;
+                    this.wordIndex++;
+                    typeSpeed = 500;
+                }
+
+                setTimeout(() => this.type(), typeSpeed);
+            }
+        }
         new TypeWriter(txtElement, words, wait);
     }
 
-    // --- 4. SCROLL & BACK TO TOP + INTERSECTION OBSERVER ---
-    const toTopBtn = document.querySelector('.to-top');
-    const sections = document.querySelectorAll('section, header');
-    const navItems = document.querySelectorAll('.nav-links a');
+    // 7. Hero Background Slider
+    const slides = document.querySelectorAll(".hero-slider .slide");
+    if(slides.length > 0) {
+        let currentSlide = 0;
+        slides[currentSlide].classList.add("active");
+        setInterval(() => {
+            slides[currentSlide].classList.remove("active");
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add("active");
+        }, 5000);
+    }
 
-    // Add reveal classes dynamically to key elements
-    const elementsToReveal = document.querySelectorAll('.service-card, .info-box, .interest-card, .section-title, .about-column-left, .about-column-right, .contact-wrapper > *');
-    elementsToReveal.forEach((el, index) => {
-        el.classList.add('reveal-element');
-        // Add staggered delays for a cascading effect
-        if (index % 4 === 1) el.classList.add('reveal-delay-100');
-        if (index % 4 === 2) el.classList.add('reveal-delay-200');
-        if (index % 4 === 3) el.classList.add('reveal-delay-300');
-    });
+    // 8. Dynamic Timeline Fill on Scroll
+    const timeline = document.querySelector('.academic-timeline');
+    if (timeline) {
+        const progressLine = document.createElement("div");
+        progressLine.className = "timeline-progress";
+        timeline.prepend(progressLine);
+        
+        const academicItems = document.querySelectorAll('.academic-item');
 
-    // Intersection Observer for Scroll Reveal
-    const revealOptions = {
-        threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px"
-    };
-
-    const revealObserver = new IntersectionObserver(function(entries, observer) {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) {
-                return;
-            }
-            entry.target.classList.add('active');
-            observer.unobserve(entry.target); // Stop observing once revealed
-        });
-    }, revealOptions);
-
-    document.querySelectorAll('.reveal-element').forEach(reveal => {
-        revealObserver.observe(reveal);
-    });
-
-    // Main Scroll Listener (for Navigation & Back to Top)
-    window.addEventListener('scroll', () => {
-        const pageYOffset = window.pageYOffset;
-
-        // Back to top
-        if (toTopBtn) {
-            if (pageYOffset > 500) {
-                toTopBtn.classList.add('active');
+        window.addEventListener('scroll', () => {
+            const timelineRect = timeline.getBoundingClientRect();
+            // We want fill to start when top of timeline passes viewport center
+            const triggerPoint = window.innerHeight / 1.5;
+            const scrollPos = triggerPoint - timelineRect.top;
+            
+            if (scrollPos > 0) {
+                const percentage = Math.min((scrollPos / timelineRect.height) * 100, 100);
+                progressLine.style.height = `${percentage}%`;
             } else {
-                toTopBtn.classList.remove('active');
+                progressLine.style.height = `0%`;
+            }
+
+            // Sync active dots
+            academicItems.forEach(item => {
+                const itemRect = item.getBoundingClientRect();
+                if (itemRect.top < window.innerHeight / 1.5) {
+                    item.classList.add("active");
+                } else {
+                    item.classList.remove("active");
+                }
+            });
+        });
+    }
+
+    // 9. Back to Top Button
+    const toTopBtn = document.querySelector(".to-top");
+    if(toTopBtn) {
+        window.addEventListener("scroll", () => {
+            if(window.scrollY > 400) toTopBtn.classList.add("visible");
+            else toTopBtn.classList.remove("visible");
+        });
+        toTopBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
+
+    // 10. Molecules Setup for specific tech background canvas
+    const canvas = document.getElementById("molecules-canvas");
+    if(canvas) {
+        const ctx = canvas.getContext("2d");
+        let particlesArray;
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        class Particle {
+            constructor(x, y, dx, dy, size) {
+                this.x = x; this.y = y; this.dx = dx; this.dy = dy; this.size = size;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = 'rgba(100, 255, 218, 0.2)';
+                ctx.fill();
+            }
+            update() {
+                if(this.x > canvas.width || this.x < 0) this.dx = -this.dx;
+                if(this.y > canvas.height || this.y < 0) this.dy = -this.dy;
+                this.x += this.dx;
+                this.y += this.dy;
+                this.draw();
             }
         }
 
-        // Active Link on Scroll (ScrollSpy)
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (pageYOffset >= (sectionTop - 150)) {
-                current = section.getAttribute('id');
+        function initCanvas() {
+            particlesArray = [];
+            const numberOfParticles = (canvas.height * canvas.width) / 25000;
+            for(let i = 0; i < numberOfParticles; i++) {
+                let size = Math.random() * 2 + 1;
+                let x = Math.random() * (innerWidth - size * 2) + size;
+                let y = Math.random() * (innerHeight - size * 2) + size;
+                let dx = (Math.random() - 0.5) * 1;
+                let dy = (Math.random() - 0.5) * 1;
+                particlesArray.push(new Particle(x, y, dx, dy, size));
             }
-        });
+        }
 
-        navItems.forEach(a => {
-            a.classList.remove('active-link');
-            if (current && a.getAttribute('href').includes(current)) {
-                a.classList.add('active-link');
+        function animateCanvas() {
+            requestAnimationFrame(animateCanvas);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for(let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
             }
-        });
-    });
-
-    // --- 4. PHONE DROPDOWN TOGGLE ---
-    const phoneToggler = document.querySelector('.phone-toggler');
-    const phoneDropdown = document.querySelector('.phone-dropdown');
-
-    if (phoneToggler && phoneDropdown) {
-        phoneToggler.addEventListener('click', (e) => {
-            e.stopPropagation();
-            phoneDropdown.classList.toggle('active');
-        });
-
-        // Fermer le menu si on clique ailleurs
-        document.addEventListener('click', (e) => {
-            if (!phoneDropdown.contains(e.target) && !phoneToggler.contains(e.target)) {
-                phoneDropdown.classList.remove('active');
+            // Connections
+            for(let a = 0; a < particlesArray.length; a++) {
+                for(let b = a; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
+                                 + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                    if(distance < (canvas.width / 15) * (canvas.height / 15)) {
+                        let opacityValue = 1 - (distance / 20000);
+                        ctx.strokeStyle = `rgba(100, 255, 218, ${opacityValue * 0.2})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
             }
+        }
+
+        initCanvas();
+        animateCanvas();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initCanvas();
         });
     }
-    // --- 5. SOCIAL ICONS ANIMATION & INTERACTIVITY ---
-    const socialIcons = document.querySelectorAll('.social-icon');
-    if (socialIcons.length > 0) {
-        // Entrance animation
-        const revealIcons = () => {
-            const windowHeight = window.innerHeight;
-            const elementVisible = 50; 
 
-            socialIcons.forEach((icon, index) => {
-                const elementTop = icon.getBoundingClientRect().top;
-                if (elementTop < windowHeight - elementVisible) {
-                    setTimeout(() => {
-                        icon.style.opacity = '1';
-                        icon.style.transform = 'translateY(0) scale(1)';
-                    }, index * 100);
-                }
-            });
-        };
-
-        socialIcons.forEach((icon) => {
-            icon.style.opacity = '0';
-            icon.style.transform = 'translateY(20px) scale(0.9)';
+    // 11. Form Handle fake submit animation
+    const contactForm = document.getElementById("contact-form");
+    if(contactForm) {
+        contactForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const btnText = document.getElementById("btn-text");
+            const btnIcon = document.getElementById("btn-icon");
+            const btnSubmit = document.getElementById("btn-submit");
             
-            // --- Advanced Hover Interaction (Magnetic / 3D Effect) ---
-            icon.addEventListener('mousemove', (e) => {
-                const rect = icon.getBoundingClientRect();
-                const x = e.clientX - rect.left; // x position within the element.
-                const y = e.clientY - rect.top;  // y position within the element.
+            const originalText = btnText.innerText;
+            btnText.innerText = "Envoi en cours...";
+            btnIcon.className = "fas fa-spinner fa-spin";
+            btnSubmit.style.pointerEvents = "none";
+            
+            setTimeout(() => {
+                contactForm.reset();
+                btnText.innerText = "Envoyé avec succès !";
+                btnIcon.className = "fas fa-check";
+                btnSubmit.style.background = "rgba(100, 255, 218, 0.2)";
                 
-                // Calculate center
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                // Calculate distance from center (max 1 for edges)
-                const distanceX = (x - centerX) / centerX;
-                const distanceY = (y - centerY) / centerY;
-                
-                // Apply subtle 3D tilt and translation
-                icon.style.transform = `translateY(-4px) scale(1.05) perspective(100px) rotateX(${-distanceY * 10}deg) rotateY(${distanceX * 10}deg)`;
-                icon.style.transition = 'transform 0.1s ease'; // Quick tracking
-            });
-
-            icon.addEventListener('mouseleave', () => {
-                // Reset to default hover state defined in CSS or base state
-                icon.style.transform = ''; 
-                icon.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'; // Smooth return
-            });
+                setTimeout(() => {
+                    btnText.innerText = originalText;
+                    btnIcon.className = "fas fa-paper-plane";
+                    btnSubmit.style.pointerEvents = "auto";
+                    btnSubmit.style.background = "transparent";
+                }, 3000);
+            }, 1500);
         });
-
-        window.addEventListener('scroll', revealIcons);
-        setTimeout(revealIcons, 500);
     }
 });
