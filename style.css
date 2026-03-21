@@ -1214,7 +1214,7 @@ ul {
 
 /* Button */
 .project-btn {
-    margin-top: 10px;
+    margin-top: auto; /* Pousse le bouton tout en bas de la carte */
     align-self: flex-start;
     font-size: 0.9rem;
     padding: 11px 22px;
