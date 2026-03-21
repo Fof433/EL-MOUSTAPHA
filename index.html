@@ -58,6 +58,11 @@
 </head>
 
 <body class="light-mode">
+    <!-- Écran de Chargement Complet -->
+    <div id="full-page-loader">
+        <div class="loader-circle"></div>
+    </div>
+
     <!-- Indicateur de chargement doré -->
     <div id="page-loader-bar"></div>
 
@@ -90,6 +95,16 @@
     </nav>
 
     <header id="accueil" class="hero-section">
+        <!-- Background Slider -->
+        <div class="hero-slider">
+            <div class="slide active" style="background-image: url('images/FOND1.png');"></div>
+            <div class="slide" style="background-image: url('images/FOND2.jpg');"></div>
+            <div class="slide" style="background-image: url('images/FOND3.jpg');"></div>
+            <div class="slide" style="background-image: url('images/FOND4.jpg');"></div>
+            <div class="slide" style="background-image: url('images/FOND5.jpg');"></div>
+        </div>
+        <div class="hero-overlay"></div>
+
         <canvas id="molecules-canvas"></canvas>
         <div class="shape shape-1"></div>
         <div class="shape shape-2"></div>
@@ -122,15 +137,15 @@
 
     <section id="apropos" class="section-padding">
         <div class="container">
-            <h3 class="about-title">A PROPOS DE MOI</h3>
+            <h3 class="about-title scroll-reveal">A PROPOS DE MOI</h3>
             <div class="about-flex-container">
-                <div class="about-column-left">
+                <div class="about-column-left scroll-reveal-left">
                     <div class="about-image-wrapper">
                         <img src="images/EL MOUSTAPHA FOFANA.png" alt="Portrait de Fofana El Moustapha"
                             class="about-portrait">
                     </div>
                 </div>
-                <div class="about-column-right">
+                <div class="about-column-right scroll-reveal-right">
 
                     <p>
                         Je propulse la performance des entreprises en synchronisant infrastructures critiques et
@@ -141,24 +156,25 @@
                 </div>
             </div>
         </div>
+    </section>
     <section id="parcours" class="section-padding bg-alt">
-        <div class="container">
-            <h3 class="section-title">
+        <div class="container text-center">
+            <h3 class="section-title scroll-reveal">
                 <span class="title-bar orange"></span> MON PARCOURS
             </h3>
             <div class="parcours-group" style="margin-bottom: 50px;">
-                <h4 style="margin-bottom: 25px; color: var(--text-main); font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <h4 class="scroll-reveal" style="margin-bottom: 25px; color: var(--text-main); font-weight: 700; display: flex; align-items: center; gap: 10px;">
                     <i class="fas fa-graduation-cap" style="color: var(--orange-accent); font-size: 1.5rem;"></i> Parcours Académique
                 </h4>
                 <div class="timeline">
-                    <div class="timeline-item">
+                    <div class="timeline-item scroll-reveal-left">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
                             <h4>Étudiant en Réseaux et Sécurité Informatique</h4>
                             <span class="timeline-date">2025 - 2026 (En cours)</span>
                         </div>
                     </div>
-                    <div class="timeline-item delay-100">
+                    <div class="timeline-item scroll-reveal-left delay-100">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
                             <h4>Terminale D</h4>
@@ -166,7 +182,7 @@
                             <p>Lycée Mixte Yamoussoukro 2 (LM2)</p>
                         </div>
                     </div>
-                    <div class="timeline-item delay-200">
+                    <div class="timeline-item scroll-reveal-left delay-200">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
                             <h4>Première D</h4>
@@ -174,7 +190,7 @@
                             <p>Lycée Scientifique de Yamoussoukro (LSY)</p>
                         </div>
                     </div>
-                    <div class="timeline-item delay-300">
+                    <div class="timeline-item scroll-reveal-left delay-300">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
                             <h4>Seconde C</h4>
@@ -186,11 +202,11 @@
             </div>
 
             <div class="parcours-group">
-                <h4 style="margin-bottom: 25px; color: var(--text-main); font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <h4 class="scroll-reveal" style="margin-bottom: 25px; color: var(--text-main); font-weight: 700; display: flex; align-items: center; gap: 10px;">
                     <i class="fas fa-medal" style="color: var(--orange-accent); font-size: 1.5rem;"></i> Formations Certifiantes
                 </h4>
                 <div class="timeline">
-                    <div class="timeline-item">
+                    <div class="timeline-item scroll-reveal-right">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
                             <h4>Développement Web</h4>
@@ -198,7 +214,7 @@
                             <p>GoMyCode</p>
                         </div>
                     </div>
-                    <div class="timeline-item delay-100">
+                    <div class="timeline-item scroll-reveal-right delay-100">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
                             <h4>Graphiste Designer et Vidéaste Professionnel</h4>
@@ -218,28 +234,28 @@
             </h3>
 
             <div class="grid-3">
-                <div class="service-card">
+                <div class="service-card scroll-reveal-scale">
                     <div class="icon-wrapper">
                         <i class="fas fa-shield-alt"></i>
                     </div>
                     <h4>Sécurité & Réseaux</h4>
                     <p>Audit de vulnérabilité, protection pare-feu et administration système haute sécurité.</p>
                 </div>
-                <div class="service-card delay-100">
+                <div class="service-card scroll-reveal-scale delay-100">
                     <div class="icon-wrapper">
                         <i class="fas fa-code"></i>
                     </div>
                     <h4>Développement Web</h4>
                     <p>Sites vitrines, e-commerce et applications web sur-mesure (HTML5, CSS3, JS).</p>
                 </div>
-                <div class="service-card delay-200">
+                <div class="service-card scroll-reveal-scale delay-200">
                     <div class="icon-wrapper">
                         <i class="fas fa-brain"></i>
                     </div>
                     <h4>Intelligence Artificielle</h4>
                     <p>Intégration d'agents IA et automatisation intelligente des processus métier.</p>
                 </div>
-                <div class="service-card delay-300">
+                <div class="service-card scroll-reveal-scale delay-300">
                     <div class="icon-wrapper">
                         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="maintenance-icon">
                             <!-- Tournevis -->

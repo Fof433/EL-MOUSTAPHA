@@ -2,9 +2,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 0. ANIMATION DE CHARGEMENT & APPARITION (Modern Reveal) ---
     const loaderBar = document.getElementById('page-loader-bar');
+    const fullLoader = document.getElementById('full-page-loader');
 
     // Fonction pour déclencher les animations d'entrée
     const startReveal = () => {
+        if (fullLoader) {
+            fullLoader.classList.add('hidden');
+        }
         if (loaderBar) {
             loaderBar.style.width = '100%';
             setTimeout(() => {
@@ -305,12 +309,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const wait = txtElement.getAttribute('data-wait');
         new TypeWriter(txtElement, words, wait);
     }
+    // --- 3.5 HERO SLIDER ---
+    const slides = document.querySelectorAll('.hero-slider .slide');
+    if (slides.length > 0) {
+        let currentSlide = 0;
+        setInterval(() => {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }, 5000); // Change l'image toutes les 5 secondes
+    }
 
     // --- 4. SCROLL & BACK TO TOP ---
     const toTopBtn = document.querySelector('.to-top');
     const sections = document.querySelectorAll('section, header');
     const navItems = document.querySelectorAll('.nav-links a');
-    const reveals = document.querySelectorAll('.scroll-reveal');
+    const reveals = document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale');
 
     // Scroll Reveal Animation Function
     const revealOnScroll = () => {
