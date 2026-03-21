@@ -229,7 +229,7 @@
 
     <section id="expertise" class="section-padding">
         <div class="container">
-            <h3 class="section-title">
+            <h3 class="section-title scroll-reveal-scale">
                 <span class="title-bar orange"></span> DOMAINES D'EXPERTISE
             </h3>
 
@@ -310,7 +310,7 @@
                     </ul>
                 </div>
 
-                <div class="info-box delay-100">
+                <div class="info-box scroll-reveal delay-100">
                     <div class="box-header">
                         <i class="fab fa-microsoft accent-orange"></i>
                         <h4>Microsoft Office</h4>
@@ -325,7 +325,7 @@
                     </ul>
                 </div>
 
-                <div class="info-box delay-200">
+                <div class="info-box scroll-reveal delay-200">
                     <div class="box-header">
                         <i class="fas fa-video accent-orange"></i>
                         <h4>Montage Vidéo</h4>
@@ -338,7 +338,7 @@
                                 web</span></li>
                     </ul>
                 </div>
-                <div class="info-box delay-300">
+                <div class="info-box scroll-reveal delay-300">
                     <div class="box-header">
                         <i class="fab fa-git-alt accent-orange"></i>
                         <h4>Développement & Versioning</h4>
@@ -357,22 +357,78 @@
 
     <section id="realisations" class="section-padding">
         <div class="container">
-            <h3 class="section-title">
+            <h3 class="section-title scroll-reveal-scale">
                 <span class="title-bar orange"></span> RÉALISATIONS
             </h3>
-            <div class="single-project-wrapper scroll-reveal">
-                <div class="realisation-card single-project-card">
-                    <div class="realisation-img-wrapper custom-img">
+            <div class="projects-grid">
+
+                <!-- Carte 1 : Site Styliste -->
+                <div class="project-card scroll-reveal-left">
+                    <div class="project-card-img">
                         <img src="images/projet 1.png" alt="Site de styliste modéliste" class="project-img">
+                        <div class="project-overlay">
+                            <a href="https://fatoumata-fofana.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-visit-btn">
+                                <i class="fas fa-external-link-alt"></i> Voir le site
+                            </a>
+                        </div>
                     </div>
-                    <div class="realisation-info single-project-info">
+                    <div class="project-card-body">
+                        <div class="project-tags">
+                            <span class="tag tag-web">Web Design</span>
+                            <span class="tag tag-ui">UI/UX</span>
+                        </div>
                         <h4>Site de styliste modéliste</h4>
                         <p>Site vitrine moderne conçu pour une styliste, mettant en valeur ses créations avec un design élégant et professionnel.</p>
-                        <a href="https://fatoumata-fofana.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-primary" style="margin-top: 15px; display: inline-flex; width: auto;">
+                        <a href="https://fatoumata-fofana.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-primary project-btn">
                             <i class="fas fa-external-link-alt"></i> Voir le site
                         </a>
                     </div>
                 </div>
+
+                <!-- Carte 2 : Site Politique -->
+                <div class="project-card scroll-reveal delay-100">
+                    <div class="project-card-img">
+                        <img src="images/projet 2.png" alt="Création de site politique" class="project-img">
+                        <div class="project-overlay">
+                            <span class="project-visit-btn"><i class="fas fa-spinner fa-spin"></i> En cours</span>
+                        </div>
+                    </div>
+                    <div class="project-card-body">
+                        <div class="project-tags">
+                            <span class="tag tag-web">Politique</span>
+                            <span class="tag tag-ui">En cours</span>
+                        </div>
+                        <h4>Création de site politique</h4>
+                        <p>Site web politique moderne en cours de développement, conçu pour valoriser un programme politique avec un design percutant et professionnel.</p>
+                        <a href="#contact" class="btn-secondary project-btn">
+                            <i class="fas fa-paper-plane"></i> Me contacter
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Carte 3 : Responsive Design -->
+                <div class="project-card scroll-reveal-right delay-200">
+                    <div class="project-card-img project-card-img--responsive">
+                        <div class="project-icon-cover">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <span class="project-visit-btn"><i class="fas fa-paint-brush"></i> Design System</span>
+                        </div>
+                    </div>
+                    <div class="project-card-body">
+                        <div class="project-tags">
+                            <span class="tag tag-responsive">Responsive</span>
+                            <span class="tag tag-css">CSS3</span>
+                        </div>
+                        <h4>Design Responsive & Mobile-First</h4>
+                        <p>Création d'interfaces entièrement adaptatives (Mobile, Tablette, Desktop) avec des breakpoints soignés et une expérience utilisateur fluide.</p>
+                        <a href="#contact" class="btn-secondary project-btn">
+                            <i class="fas fa-paper-plane"></i> Me contacter
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -516,10 +572,67 @@
         </div>
     </section>
 
-    <footer>
-        <div class="container footer-content">
-            <p>&copy; 2026 El Moustapha Fofana - Propri&eacute;t&eacute; intellectuelle prot&eacute;g&eacute;e.</p>
-            <p class="location"><i class="fas fa-map-marker-alt"></i> Abidjan, Côte d'Ivoire</p>
+    <footer class="modern-footer">
+        <div class="container footer-grid">
+            <!-- 1. & 2. Logo et Présentation -->
+            <div class="footer-col footer-about scroll-reveal">
+                <a href="#accueil" class="footer-logo">
+                    <img src="images/logo.png" alt="Logo Fofana El Moustapha" class="logo-img">
+                </a>
+                <p class="footer-desc">
+                    Spécialiste digital passionné par la cybersécurité, le développement web et les solutions d’intelligence artificielle.
+                </p>
+                <div class="footer-socials">
+                    <a href="https://github.com/el-moustapha-fofana" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/el-moustapha-fofana-4217b939b" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.facebook.com/El.moustapha.Fofana" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- 3. Navigation -->
+            <div class="footer-col footer-nav scroll-reveal delay-100">
+                <h4>Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="#accueil"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                    <li><a href="#apropos"><i class="fas fa-chevron-right"></i> À propos</a></li>
+                    <li><a href="#expertise"><i class="fas fa-chevron-right"></i> Services</a></li>
+                    <li><a href="#realisations"><i class="fas fa-chevron-right"></i> Réalisations</a></li>
+                    <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- 4. Services -->
+            <div class="footer-col footer-services scroll-reveal delay-200">
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Développement web</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Applications web</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Sécurité</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Intelligence artificielle</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Maintenance info</a></li>
+                </ul>
+            </div>
+
+            <!-- 5. Contact -->
+            <div class="footer-col footer-contact scroll-reveal delay-300">
+                <h4>Contact</h4>
+                <ul class="footer-contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> <span>Abidjan, Côte d’Ivoire</span></li>
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:elmoustaphafofana51@gmail.com">elmoustaphafofana51@gmail.com</a></li>
+                    <li><i class="fas fa-phone-alt"></i> <a href="tel:+2250777823793">+225 07 77 82 37 93</a></li>
+                </ul>
+                <a href="https://wa.me/2250584442211" target="_blank" class="footer-whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> Discuter sur WhatsApp
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-content">
+                <p>&copy; 2026 Fofana El Moustapha. Tous droits réservés.</p>
+                <p>Fait avec <i class="fas fa-heart" style="color: #ff6b6b;"></i> en Côte d’Ivoire</p>
+            </div>
         </div>
     </footer>
 
